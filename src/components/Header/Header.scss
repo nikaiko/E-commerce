@@ -1,6 +1,11 @@
-@import "../../styles/variables.scss";
+@import "@styles/variables.scss";
 
 .header {
-  border-bottom: 1px solid $smaltblue;
-  height: 200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 120px;
+  border-bottom: 1px solid #f3f3f3;
+  max-height: 200px;
+  background-color: $smaltblue;
 }
