@@ -1,4 +1,4 @@
-export type ProductProps = {
+type ProductProps = {
   id: number;
   title: string;
   price: number;
@@ -10,3 +10,5 @@ export type ProductProps = {
     count: number;
   };
 };
+
+export default ProductProps;
