@@ -59,11 +59,17 @@ video {
   padding: 0;
   border: 0;
   font-size: 100%;
-  font: inherit;
   vertical-align: baseline;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   text-size-adjust: none;
+
+  font-family: "Eudoxus Sans", Roboto;
+  font-style: normal;
+}
+
+a {
+  text-decoration: none;
 }
 
 footer,

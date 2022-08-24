@@ -2,16 +2,17 @@ import React from "react";
 
 import Header from "@components/Header";
 import { Outlet } from "react-router-dom";
-import "./MainLayout.scss";
 
-const MainLayout: React.FC = () => {
+import styles from "./MainLayout.module.scss";
+
+const MainLayout = () => {
   return (
-    <div className="wrapper">
+    <>
       <Header />
-      <main className="content">
+      <main className={styles.container}>
         <Outlet />
       </main>
-    </div>
+    </>
   );
 };
 
