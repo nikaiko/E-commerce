@@ -1,16 +1,21 @@
 import React from "react";
 
 import Loader from "@components/Loader";
-import { LoaderSize } from "@components/Loader/Loader";
+import LoaderSize from "@configs/LoaderSize";
 
 export type WithLoaderProps = React.PropsWithChildren<{
   loading: boolean;
+  className?: string;
 }>;
 
-const WithLoader: React.FC<WithLoaderProps> = ({ loading, children }) => {
+const WithLoader: React.FC<WithLoaderProps> = ({
+  loading,
+  children,
+  className,
+}) => {
   return (
     <>
-      {loading && <Loader size={LoaderSize.s} />}
+      {loading && <Loader size={LoaderSize.s} className={className} />}
       {children}
     </>
   );

@@ -26,7 +26,7 @@ const Input: React.FC<InputProps> = ({
       onChange={(e) => onChange(e.target.value)}
       className={classNames(
         styles.input,
-        disabled ? styles.input_disabled : "",
+        disabled && styles.input_disabled,
         `${className}`
       )}
       disabled={disabled}

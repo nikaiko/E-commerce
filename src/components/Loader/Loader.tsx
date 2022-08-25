@@ -1,13 +1,9 @@
 import React from "react";
 
-import classNames from "classnames";
 import "./Loader.scss";
 
-export enum LoaderSize {
-  s = "s",
-  m = "m",
-  l = "l",
-}
+import LoaderSize from "@configs/LoaderSize";
+import classNames from "classnames";
 
 export type LoaderProps = {
   loading?: boolean;
@@ -21,9 +17,7 @@ const Loader: React.FC<LoaderProps> = ({
   className = "",
 }) => {
   return loading ? (
-    <div
-      className={classNames("loader", `loader_size-${size}`, `${className}`)}
-    />
+    <div className={classNames("loader", `loader_size-${size}`, className)} />
   ) : null;
 };
 

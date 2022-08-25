@@ -1,6 +1,5 @@
 import React from "react";
 
-import searchIcon from "@assets/search-icon.svg";
 import Button from "@components/Button";
 import Input from "@components/Input";
 
@@ -11,9 +10,13 @@ const Search = () => {
 
   return (
     <div className={styles.search}>
-      <Input value={search} onChange={setSearch} />
-      <Button />
-      <img src={searchIcon} alt="search-icon" className={styles.search__icon} />
+      <Input
+        value={search}
+        onChange={setSearch}
+        className={styles.search__input}
+        placeholder="Search property"
+      />
+      <Button className={styles.search__button} />
     </div>
   );
 };

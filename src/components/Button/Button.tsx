@@ -1,14 +1,10 @@
 import React from "react";
 
 import WithLoader from "@components/WithLoader";
+import ButtonColor from "@configs/ButtonColor";
 import classNames from "classnames";
 
-import "./Button.scss";
-
-export enum ButtonColor {
-  primary = "primary",
-  secondary = "secondary",
-}
+import styles from "./Button.module.scss";
 
 export type ButtonProps = React.PropsWithChildren<{
   loading?: boolean;
@@ -17,7 +13,7 @@ export type ButtonProps = React.PropsWithChildren<{
   React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 const Button: React.FC<ButtonProps> = ({
-  loading = false,
+  loading = true,
   color = ButtonColor.primary,
   className = "",
   disabled,
@@ -25,18 +21,25 @@ const Button: React.FC<ButtonProps> = ({
   ...rest
 }) => {
   const isBlocked = loading || disabled;
+  const isPrimary = color === ButtonColor.primary;
 
   return (
     <button
-      {...rest}
       className={classNames(
-        "button",
-        `${isBlocked ? "button_disabled" : `button_color-${color}`}`,
-        `${className}`
+        styles.button,
+        isBlocked
+          ? styles.button_disabled
+          : isPrimary
+          ? styles.button_primary
+          : styles.button_secondary,
+        className
       )}
       disabled={isBlocked}
+      {...rest}
     >
-      <WithLoader loading={loading}>{children}</WithLoader>
+      <WithLoader loading={loading} className={styles.loader}>
+        {children}
+      </WithLoader>
     </button>
   );
 };

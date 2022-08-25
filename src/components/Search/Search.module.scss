@@ -1,7 +1,41 @@
 .search {
   position: relative;
 
-  &__icon {
+  &__input {
+    background-image: url("../../assets/search-icon.svg");
+    background-repeat: no-repeat;
+    background-position-y: center;
+    background-position-x: 25px;
+    background-size: 32px 32px;
+
+    width: 1021px;
+    padding-left: 75px;
+
+    @media (max-width: 1240px) {
+      background-position-x: 14px;
+      background-size: 24px 24px;
+
+      width: 327px;
+      padding-left: 50px;
+    }
+  }
+
+  &__button {
     position: absolute;
+    right: 28px;
+    top: 15px;
+
+    @media (max-width: 1240px) {
+      right: 8px;
+      top: 8px;
+    }
+
+    &::after {
+      content: "Find Now";
+
+      @media (max-width: 1240px) {
+        content: "Search";
+      }
+    }
   }
 }
