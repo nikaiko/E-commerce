@@ -2,7 +2,7 @@ import React from "react";
 
 import bagIcon from "@assets/bag-icon.svg";
 import logoSvg from "@assets/logo.svg";
-import title from "@assets/title.svg";
+import titleSvg from "@assets/title.svg";
 import userIcon from "@assets/user-icon.svg";
 import classNames from "classnames";
 import { Link } from "react-router-dom";
@@ -15,7 +15,7 @@ const Header: React.FC = () => {
     <header className={styles.header}>
       <Link to="/" className={styles.header__logoTitle}>
         <img src={logoSvg} alt="logo-svg" className={styles.header__logo} />
-        <img src={title} alt="title" className={styles.header__title} />
+        <img src={titleSvg} alt="title" className={styles.header__title} />
       </Link>
       <nav className={styles.header__nav}>
         <Link

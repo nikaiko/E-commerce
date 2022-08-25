@@ -49,13 +49,10 @@
   }
 
   &__link {
+    @include text(500, 18px, 180%);
     display: flex;
     align-items: center;
     height: 100%;
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 180%;
-    color: $black;
 
     &_active {
       border-bottom: 3px solid $smaltblue;

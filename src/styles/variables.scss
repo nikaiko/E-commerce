@@ -1,10 +1,18 @@
 $smaltblue: #518581;
-$black: #151411;
+$text-color: #151411;
+$paragraph-color: #afadb5;
 
-@mixin container {
-  padding: 0 calc(50% - 620px);
+@mixin container($p-top: 0) {
+  padding: $p-top calc(50% - 620px) 0;
 
   @media (max-width: 1240px) {
-    padding: 0 calc(50% - 187.5px);
+    padding: calc($p-top / 2) calc(50% - 187.5px) 0;
   }
+}
+
+@mixin text($font-w, $font-s, $line-h, $text-c: $text-color) {
+  font-weight: $font-w;
+  font-size: $font-s;
+  line-height: $line-h;
+  color: $text-c;
 }

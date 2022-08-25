@@ -1,0 +1,37 @@
+.loader {
+  border-color: #518581;
+  border-style: solid;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+
+  &_size-l {
+    border-width: 6px;
+    width: 60px;
+    height: 60px;
+  }
+
+  &_size-m {
+    border-width: 4.5px;
+    width: 40px;
+    height: 40px;
+  }
+
+  &_size-s {
+    border-width: 3px;
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
