@@ -13,7 +13,7 @@ export type ButtonProps = React.PropsWithChildren<{
   React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 const Button: React.FC<ButtonProps> = ({
-  loading = true,
+  loading = false,
   color = ButtonColor.primary,
   className = "",
   disabled,

@@ -1,9 +1,9 @@
 import React from "react";
 
-import "./Loader.scss";
-
 import LoaderSize from "@configs/LoaderSize";
 import classNames from "classnames";
+
+import styles from "./Loader.module.scss";
 
 export type LoaderProps = {
   loading?: boolean;
@@ -17,7 +17,9 @@ const Loader: React.FC<LoaderProps> = ({
   className = "",
 }) => {
   return loading ? (
-    <div className={classNames("loader", `loader_size-${size}`, className)} />
+    <div
+      className={classNames(styles.loader, styles[`loader_${size}`], className)}
+    />
   ) : null;
 };
 
