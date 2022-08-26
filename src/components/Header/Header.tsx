@@ -1,11 +1,10 @@
 import React from "react";
 
-import bagIcon from "@assets/bag-icon.svg";
-import logoSvg from "@assets/logo.svg";
-import titleSvg from "@assets/title.svg";
-import userIcon from "@assets/user-icon.svg";
-import classNames from "classnames";
-import { Link } from "react-router-dom";
+import basketIcon from "@assets/images/basket-icon.svg";
+import logoSvg from "@assets/images/logo.svg";
+import profileIcon from "@assets/images/profile-icon.svg";
+import titleSvg from "@assets/images/title.svg";
+import { Link, NavLink } from "react-router-dom";
 
 import MenuButton from "./components/MenuButton";
 import styles from "./Header.module.scss";
@@ -18,28 +17,46 @@ const Header: React.FC = () => {
         <img src={titleSvg} alt="title" className={styles.header__title} />
       </Link>
       <nav className={styles.header__nav}>
-        <Link
+        <NavLink
           to="/products"
-          className={classNames(
-            styles.header__link,
-            styles.header__link_active
-          )}
+          className={({ isActive }) =>
+            isActive ? styles.header__link_active : styles.header__link
+          }
         >
           Product
-        </Link>
-        <Link to="/services" className={styles.header__link}>
+        </NavLink>
+        <NavLink
+          to="/services"
+          className={({ isActive }) =>
+            isActive ? styles.header__link_active : styles.header__link
+          }
+        >
           Services
-        </Link>
-        <Link to="/article" className={styles.header__link}>
+        </NavLink>
+        <NavLink
+          to="/article"
+          className={({ isActive }) =>
+            isActive ? styles.header__link_active : styles.header__link
+          }
+        >
           Article
-        </Link>
-        <Link to="/about" className={styles.header__link}>
+        </NavLink>
+        <NavLink
+          to="/about"
+          className={({ isActive }) =>
+            isActive ? styles.header__link_active : styles.header__link
+          }
+        >
           About Us
-        </Link>
+        </NavLink>
       </nav>
       <div className={styles.header__icons}>
-        <img src={userIcon} alt="user-icon" />
-        <img src={bagIcon} alt="bag-icon" />
+        <Link to="/profile">
+          <img src={profileIcon} alt="profile-icon" />
+        </Link>
+        <Link to="/basket">
+          <img src={basketIcon} alt="basket-icon" />
+        </Link>
       </div>
       <MenuButton />
     </header>

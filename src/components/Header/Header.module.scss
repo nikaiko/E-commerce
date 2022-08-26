@@ -50,12 +50,18 @@
 
   &__link {
     @include text(500, 18px, 180%);
-    display: flex;
-    align-items: center;
-    height: 100%;
 
     &_active {
+      @include text(500, 18px, 180%);
+
+      display: flex;
+      align-items: center;
+      height: 100%;
       border-bottom: 3px solid $smaltblue;
+
+      &:visited {
+        color: $text-color;
+      }
     }
   }
 

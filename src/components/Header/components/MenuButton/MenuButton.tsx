@@ -1,44 +1,76 @@
 import React from "react";
 
-import classNames from "classnames";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import styles from "./MenuButton.module.scss";
 
-const BurgerButton = () => {
+const MenuButton = () => {
   const [open, setOpen] = React.useState(false);
 
   return (
-    <>
-      {/* <nav
-        className={classNames(
-          styles.menu__popup,
-          `${show ? `${styles.menu__popup_open}` : ""}`
-        )}
-      >
-        <Link to="/products" className={styles.menu__link}>
-          Product
-        </Link>
-        <Link to="/services" className={styles.menu__link}>
-          Services
-        </Link>
-        <Link to="/article" className={styles.menu__link}>
-          Article
-        </Link>
-        <Link to="/about" className={styles.menu__link}>
-          About Us
-        </Link>
-      </nav> */}
+    <div className={styles.menu}>
       <div
-        className={`${styles.burger} ${open ? `${styles.open}` : ""}`}
+        className={open ? styles.menu__button_open : styles.menu__button}
         onClick={() => setOpen(!open)}
       >
-        <span className={`${styles.burger_line} ${styles.top_line}`} />
-        <span className={`${styles.burger_line} ${styles.mid_line}`} />
-        <span className={`${styles.burger_line} ${styles.bottom_line}`} />
+        <span />
+        <span />
+        <span />
       </div>
-    </>
+      {open && (
+        <nav className={styles.menu__popup}>
+          <NavLink
+            to="/profile"
+            className={({ isActive }) =>
+              isActive ? styles.menu__link_active : styles.menu__link
+            }
+          >
+            Profile
+          </NavLink>
+          <NavLink
+            to="/basket"
+            className={({ isActive }) =>
+              isActive ? styles.menu__link_active : styles.menu__link
+            }
+          >
+            Basket
+          </NavLink>
+          <NavLink
+            to="/products"
+            className={({ isActive }) =>
+              isActive ? styles.menu__link_active : styles.menu__link
+            }
+          >
+            Product
+          </NavLink>
+          <NavLink
+            to="/services"
+            className={({ isActive }) =>
+              isActive ? styles.menu__link_active : styles.menu__link
+            }
+          >
+            Services
+          </NavLink>
+          <NavLink
+            to="/article"
+            className={({ isActive }) =>
+              isActive ? styles.menu__link_active : styles.menu__link
+            }
+          >
+            Article
+          </NavLink>
+          <NavLink
+            to="/about"
+            className={({ isActive }) =>
+              isActive ? styles.menu__link_active : styles.menu__link
+            }
+          >
+            About Us
+          </NavLink>
+        </nav>
+      )}
+    </div>
   );
 };
 
-export default BurgerButton;
+export default MenuButton;
