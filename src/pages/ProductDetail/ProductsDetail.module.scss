@@ -1,0 +1,37 @@
+@import "@styles/variables.scss";
+
+.product {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 50px;
+
+  &__image {
+    max-width: 600px;
+    max-height: 600px;
+  }
+
+  &__description {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    max-width: 590px;
+    padding-top: 2px;
+  }
+
+  &__title {
+    @include text(700, 44px, 130%);
+
+    @media (max-width: 1240px) {
+      font-size: 24px;
+    }
+  }
+
+  &__subtitle {
+    @include text(500, 18px, 180%, $paragraph-color);
+
+    @media (max-width: 1240px) {
+      font-size: 14px;
+    }
+  }
+}

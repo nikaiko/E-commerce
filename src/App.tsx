@@ -14,7 +14,7 @@ const App = () => {
         <Route path={ROUTES.MAIN} element={<MainLayout />}>
           <Route index element={<Products />} />
           <Route path={ROUTES.PRODUCTS} element={<Products />} />
-          <Route path={ROUTES.PRODUCT_DETAIL} element={<ProductDetail />} />
+          <Route path={"products/1"} element={<ProductDetail />} />
           <Route
             path={ROUTES.OTHER}
             element={<Navigate to={ROUTES.MAIN} replace />}

@@ -1,23 +1,16 @@
 import React from "react";
 
 import Card from "@components/Card";
+import Counter from "@components/Counter";
 import Filter from "@components/Filter";
 import Search from "@components/Search";
 import API_ENDPOINTS from "@configs/api";
 import ROUTES from "@configs/routes";
+import ProductProps from "@entities/ProductProps";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 import styles from "./Products.module.scss";
-
-export type ProductProps = {
-  id: number;
-  title: string;
-  price: number;
-  category: string;
-  description: string;
-  image: string;
-};
 
 const Products = () => {
   const [products, setProducts] = React.useState<ProductProps[]>([]);
@@ -50,7 +43,7 @@ const Products = () => {
       </div>
       <div className={styles.products__total}>
         <h2>Total Products</h2>
-        <span>{total}</span>
+        <Counter count={total} />
       </div>
       <div className={styles.products__list}>
         {products.map((product) => (
@@ -59,7 +52,12 @@ const Products = () => {
             image={product.image}
             category={product.category}
             title={product.title}
-            content={product.price}
+            content={
+              <>
+                <h3>${product.price}</h3>
+                <h3>{product.price}</h3>
+              </>
+            }
             onClick={() => navigate(`${ROUTES.PRODUCTS}/${product.id}`)}
           />
         ))}

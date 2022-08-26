@@ -60,6 +60,9 @@
 
   &__content {
     @include text(700, 24px, 130%);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
 
     @media (max-width: 1240px) {
       font-size: 14px;

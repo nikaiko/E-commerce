@@ -1,10 +1,14 @@
 import React from "react";
 
 import WithLoader from "@components/WithLoader";
-import ButtonColor from "@configs/ButtonColor";
 import classNames from "classnames";
 
 import styles from "./Button.module.scss";
+
+export enum ButtonColor {
+  primary = "primary",
+  secondary = "secondary",
+}
 
 export type ButtonProps = React.PropsWithChildren<{
   loading?: boolean;

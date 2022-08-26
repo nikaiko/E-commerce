@@ -34,7 +34,7 @@ const Card: React.FC<CardProps> = ({
           {title}
         </h3>
         <div className={styles.card__subtitle}>{subtitle}</div>
-        <h3 className={styles.card__content}>${content}</h3>
+        <div className={styles.card__content}>{content}</div>
       </div>
     </div>
   );

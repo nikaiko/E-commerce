@@ -6,7 +6,8 @@
       "@configs/*": ["src/configs/*"],
       "@styles/*": ["src/styles/*"],
       "@utils/*": ["src/utils/*"],
-      "@assets/*": ["src/assets/*"]
+      "@assets/*": ["src/assets/*"],
+      "@entities/*": ["src/entities/*"]
     }
   }
 }

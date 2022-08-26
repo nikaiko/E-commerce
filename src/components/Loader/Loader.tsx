@@ -1,9 +1,14 @@
 import React from "react";
 
-import LoaderSize from "@configs/LoaderSize";
 import classNames from "classnames";
 
 import styles from "./Loader.module.scss";
+
+export enum LoaderSize {
+  s = "s",
+  m = "m",
+  l = "l",
+}
 
 export type LoaderProps = {
   loading?: boolean;
