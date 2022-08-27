@@ -18,7 +18,7 @@ const Rating: React.FC<RatingProps> = ({ rate, count, className }) => {
           {[...Array(5)].map((__, id) => {
             id += 1;
             return (
-              <span
+              <div
                 key={id}
                 className={
                   id <= (rate || 0)
@@ -27,7 +27,7 @@ const Rating: React.FC<RatingProps> = ({ rate, count, className }) => {
                 }
               >
                 &#9733;
-              </span>
+              </div>
             );
           })}
           <h5>{rate}</h5>
@@ -35,7 +35,7 @@ const Rating: React.FC<RatingProps> = ({ rate, count, className }) => {
         </div>
       ) : (
         <div className={styles.rating}>
-          <span className={styles.rating__star_on}>&#9733;</span>
+          <div className={styles.rating__star_on}>&#9733;</div>
           <h3>{rate}</h3>
         </div>
       )}

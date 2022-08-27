@@ -2,7 +2,7 @@ import React from "react";
 
 import Rating from "@components/Rating";
 
-import styles from "./ProductsDetail.module.scss";
+import styles from "./ProductDetail.module.scss";
 
 const ProductDetail = () => {
   const data = {
@@ -26,10 +26,23 @@ const ProductDetail = () => {
         alt={data.image}
         className={styles.product__image}
       />
-      <div className={styles.product__description}>
+      <div className={styles.product__info}>
         <h2 className={styles.product__title}>{data.title} </h2>
         <div className={styles.product__subtitle}>subtitle </div>
-        <Rating rate={data.rating.rate} count={data.rating.count} />
+        <Rating
+          rate={data.rating.rate}
+          count={data.rating.count}
+          className={styles.product__rating}
+        />
+        <p className={styles.product__description}>
+          {data.description}
+          {data.description}
+          {data.description}
+          {data.description}
+          {data.description}
+          <span>Read</span>
+        </p>
+        <h2 className={styles.product__price}>${data.price}</h2>
       </div>
     </div>
   );

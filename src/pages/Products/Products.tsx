@@ -3,6 +3,7 @@ import React from "react";
 import Card from "@components/Card";
 import Counter from "@components/Counter";
 import Filter from "@components/Filter";
+import Rating from "@components/Rating";
 import Search from "@components/Search";
 import API_ENDPOINTS from "@configs/api";
 import ROUTES from "@configs/routes";
@@ -55,7 +56,7 @@ const Products = () => {
             content={
               <>
                 <h3>${product.price}</h3>
-                <h3>{product.price}</h3>
+                <Rating rate={product.rating?.rate} />
               </>
             }
             onClick={() => navigate(`${ROUTES.PRODUCTS}/${product.id}`)}
