@@ -1,6 +1,7 @@
 import React from "react";
 
 import Rating from "@components/Rating";
+import ReadMoreLess from "@components/ReadMoreLess";
 
 import styles from "./ProductDetail.module.scss";
 
@@ -10,7 +11,7 @@ const ProductDetail = () => {
     title: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
     price: 109.95,
     description:
-      "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
+      "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everydayYour perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everydayYour perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
     category: "men's clothing",
     image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
     rating: {
@@ -34,15 +35,15 @@ const ProductDetail = () => {
           count={data.rating.count}
           className={styles.product__rating}
         />
-        <p className={styles.product__description}>
-          {data.description}
-          {data.description}
-          {data.description}
-          {data.description}
-          {data.description}
-          <span>Read</span>
-        </p>
+        <ReadMoreLess
+          text={data.description}
+          className={styles.product__description}
+        />
         <h2 className={styles.product__price}>${data.price}</h2>
+      </div>
+      <div>
+        {/* <Button>Buy Now</Button>
+        <Button>Add to Chart</Button> */}
       </div>
     </div>
   );

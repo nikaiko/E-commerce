@@ -1,5 +1,9 @@
 import React from "react";
 
+import classNames from "classnames";
+
+import styles from "./ReadMoreLess.module.scss";
+
 type ReadMoreLessProps = {
   text: string;
   limit?: number;
@@ -8,14 +12,28 @@ type ReadMoreLessProps = {
 
 const ReadMoreLess: React.FC<ReadMoreLessProps> = ({
   text,
-  limit = 200,
+  limit = 100,
   className,
 }) => {
-  const [iseReadMoreShown, setIseReadMoreShown] = React.useState(false);
+  const [show, setShow] = React.useState(false);
+
+  const isBig = text.length > limit;
 
   return (
-    <div className={className}>
-      {iseReadMoreShown ? text : text.substring(0, 200)}
+    <div className={classNames(styles.readmoreless, className)}>
+      {isBig ? (
+        <>
+          {show ? text : `${text.substring(0, limit)}... `}
+          <button
+            onClick={() => setShow(!show)}
+            className={styles.readmoreless__button}
+          >
+            {show ? "Read Less " : "Read More"}
+          </button>
+        </>
+      ) : (
+        text
+      )}
     </div>
   );
 };

@@ -53,18 +53,7 @@
   }
 
   &__description {
-    @include text(500, 18px, 180%, $paragraph-color);
     padding-top: 20px;
-
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-
-    @media (max-width: 1240px) {
-      font-size: 14px;
-    }
   }
 
   &__price {
