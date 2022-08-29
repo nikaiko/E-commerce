@@ -4,7 +4,6 @@ import ProductApi from "@api/ProductApi";
 import Button from "@components/Button";
 import { ButtonColor } from "@components/Button/Button";
 import Card from "@components/Card";
-import Loader from "@components/Loader";
 import Rating from "@components/Rating";
 import ReadMoreLess from "@components/ReadMoreLess";
 import ROUTES from "@configs/routes";
@@ -13,7 +12,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import styles from "./ProductDetail.module.scss";
 
-const ProductDetail = () => {
+const ProductDetail: React.FC = () => {
   const [product, setProduct] = React.useState<IProduct>();
   const [relatedItems, setRelatedItems] = React.useState<IProduct[]>([]);
 

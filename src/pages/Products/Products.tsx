@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 
 import styles from "./Products.module.scss";
 
-const Products = () => {
+const Products: React.FC = () => {
   const [products, setProducts] = React.useState<IProduct[]>([]);
   const [total, setTotal] = React.useState<number>(0);
 

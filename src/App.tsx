@@ -8,7 +8,7 @@ import MainPage from "./pages/MainPage";
 import ProductDetail from "./pages/ProductDetail";
 import Products from "./pages/Products";
 
-const App = () => {
+const App: React.FC = () => {
   return (
     <BrowserRouter>
       <Routes>
