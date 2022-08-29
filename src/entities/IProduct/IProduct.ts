@@ -1,4 +1,4 @@
-type ProductProps = {
+interface IProduct {
   id: number;
   title: string;
   price: number;
@@ -9,6 +9,6 @@ type ProductProps = {
     rate: number;
     count: number;
   };
-};
+}
 
-export default ProductProps;
+export default IProduct;

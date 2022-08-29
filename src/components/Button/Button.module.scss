@@ -6,6 +6,7 @@
   height: 54px;
   text-align: center;
   border: none;
+  cursor: pointer;
 
   @media (max-width: 1240px) {
     width: 100px;
@@ -34,8 +35,10 @@
   &_disabled {
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: center;
+    gap: 7px;
     background-color: #d9d9d9;
+    cursor: default;
   }
 }
 

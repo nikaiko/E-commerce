@@ -1,49 +1,91 @@
 import React from "react";
 
+import ProductApi from "@api/ProductApi";
+import Button from "@components/Button";
+import { ButtonColor } from "@components/Button/Button";
+import Card from "@components/Card";
+import Loader from "@components/Loader";
 import Rating from "@components/Rating";
 import ReadMoreLess from "@components/ReadMoreLess";
+import ROUTES from "@configs/routes";
+import IProduct from "@entities/IProduct";
+import { useNavigate, useParams } from "react-router-dom";
 
 import styles from "./ProductDetail.module.scss";
 
 const ProductDetail = () => {
-  const data = {
-    id: 1,
-    title: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
-    price: 109.95,
-    description:
-      "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everydayYour perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everydayYour perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
-    category: "men's clothing",
-    image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-    rating: {
-      rate: 3.9,
-      count: 120,
-    },
-  };
+  const [product, setProduct] = React.useState<IProduct>();
+  const [relatedItems, setRelatedItems] = React.useState<IProduct[]>([]);
+
+  const { id } = useParams();
+  const navigate = useNavigate();
+
+  React.useEffect(() => {
+    try {
+      ProductApi.fetchProduct(id)
+        .then((data) => {
+          setProduct(data);
+          return data;
+        })
+        .then((data) => ProductApi.fetchProductsByCategory(data.category))
+        .then((data) => setRelatedItems(data));
+    } catch (e) {
+      alert(e);
+    }
+  }, [id]);
+
+  if (!product) {
+    return <p>Not Found</p>;
+  }
 
   return (
-    <div className={styles.product}>
-      <img
-        src={data.image}
-        alt={data.image}
-        className={styles.product__image}
-      />
-      <div className={styles.product__info}>
-        <h2 className={styles.product__title}>{data.title} </h2>
-        <div className={styles.product__subtitle}>subtitle </div>
-        <Rating
-          rate={data.rating.rate}
-          count={data.rating.count}
-          className={styles.product__rating}
+    <div>
+      <div className={styles.product}>
+        <img
+          src={product?.image}
+          alt={product?.image}
+          className={styles.product__image}
         />
-        <ReadMoreLess
-          text={data.description}
-          className={styles.product__description}
-        />
-        <h2 className={styles.product__price}>${data.price}</h2>
+        <div className={styles.product__info}>
+          <h2 className={styles.product__title}>{product?.title}</h2>
+          <div className={styles.product__category}>{product?.category}</div>
+          <Rating
+            rate={product?.rating.rate}
+            count={product?.rating.count}
+            className={styles.product__rating}
+          />
+          <ReadMoreLess
+            text={product?.description}
+            className={styles.product__description}
+          />
+          <h2 className={styles.product__price}>${product?.price}</h2>
+          <div className={styles.product__buttons}>
+            <Button>Buy Now</Button>
+            <Button color={ButtonColor.secondary}>Add to Chart</Button>
+          </div>
+        </div>
       </div>
-      <div>
-        {/* <Button>Buy Now</Button>
-        <Button>Add to Chart</Button> */}
+      <div className={styles.relatedItems}>
+        <h5 className={styles.relatedItems__title}>Related Items</h5>
+        <div className={styles.relatedItems__list}>
+          {relatedItems
+            .filter((item) => item.id !== product?.id)
+            .map((item) => (
+              <Card
+                key={item.id}
+                image={item.image}
+                category={item.category}
+                title={item.title}
+                content={
+                  <>
+                    <h3>${item.price}</h3>
+                    <Rating rate={item.rating?.rate} />
+                  </>
+                }
+                onClick={() => navigate(`/${ROUTES.PRODUCTS}/${item.id}`)}
+              />
+            ))}
+        </div>
       </div>
     </div>
   );

@@ -6,7 +6,6 @@ export type CardProps = {
   image: string;
   category?: string;
   title: React.ReactNode;
-  subtitle?: React.ReactNode;
   content?: React.ReactNode;
   onClick?: React.MouseEventHandler;
 };
@@ -15,7 +14,6 @@ const Card: React.FC<CardProps> = ({
   image,
   category,
   title,
-  subtitle,
   content,
   onClick,
   ...rest
@@ -33,7 +31,6 @@ const Card: React.FC<CardProps> = ({
         <h3 className={styles.card__title} onClick={onClick}>
           {title}
         </h3>
-        <div className={styles.card__subtitle}>{subtitle}</div>
         <div className={styles.card__content}>{content}</div>
       </div>
     </div>

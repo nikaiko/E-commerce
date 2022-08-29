@@ -1,7 +1,7 @@
 const ROUTES = {
   MAIN: "/",
-  PRODUCTS: "/products",
-  PRODUCT_DETAIL: "/products/:id",
+  PRODUCTS: "products",
+  PRODUCT_DETAIL: "products/:id",
   OTHER: "*",
 };
 

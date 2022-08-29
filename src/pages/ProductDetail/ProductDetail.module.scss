@@ -6,6 +6,10 @@
   flex-wrap: wrap;
   gap: 50px;
 
+  @media (max-width: 1240px) {
+    gap: 30px;
+  }
+
   &__image {
     max-width: 600px;
     max-height: 600px;
@@ -22,6 +26,10 @@
     justify-content: flex-start;
     max-width: 590px;
     padding-top: 2px;
+
+    @media (max-width: 1240px) {
+      max-width: 327px;
+    }
   }
 
   &__title {
@@ -32,7 +40,7 @@
     }
   }
 
-  &__subtitle {
+  &__category {
     @include text(500, 18px, 180%, $paragraph-color);
     padding-top: 10px;
 
@@ -63,6 +71,45 @@
     @media (max-width: 1240px) {
       padding-top: 16px;
       font-size: 24px;
+    }
+  }
+
+  &__buttons {
+    padding-top: 50px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+
+    @media (max-width: 1240px) {
+      padding-top: 30px;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    Button {
+      width: 100%;
+      height: 58px;
+      font-size: 18px;
+    }
+  }
+}
+
+.relatedItems {
+  @include text(700, 32px, 130%);
+  padding-top: 50px;
+
+  @media (max-width: 1240px) {
+    padding-top: 100px;
+  }
+
+  &__list {
+    padding-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 29px;
+
+    @media (max-width: 1240px) {
+      gap: 27px 15px;
     }
   }
 }

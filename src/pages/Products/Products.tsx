@@ -1,32 +1,28 @@
 import React from "react";
 
+import ProductApi from "@api/ProductApi";
 import Card from "@components/Card";
 import Counter from "@components/Counter";
 import Filter from "@components/Filter";
 import Rating from "@components/Rating";
 import Search from "@components/Search";
-import API_ENDPOINTS from "@configs/api";
 import ROUTES from "@configs/routes";
-import ProductProps from "@entities/ProductProps";
-import axios from "axios";
+import IProduct from "@entities/IProduct";
 import { useNavigate } from "react-router-dom";
 
 import styles from "./Products.module.scss";
 
 const Products = () => {
-  const [products, setProducts] = React.useState<ProductProps[]>([]);
-  const [total, setTotal] = React.useState(0);
+  const [products, setProducts] = React.useState<IProduct[]>([]);
+  const [total, setTotal] = React.useState<number>(0);
 
   const navigate = useNavigate();
 
   React.useEffect(() => {
-    const fetch = async () => {
-      const result = await axios.get<ProductProps[]>(API_ENDPOINTS.PRODUCTS);
-      setProducts(result.data);
-      setTotal(result.data.length);
-    };
-
-    fetch();
+    ProductApi.fetchProducts().then((data: IProduct[]) => {
+      setProducts(data);
+      setTotal(data.length);
+    });
   }, []);
 
   return (
@@ -59,7 +55,7 @@ const Products = () => {
                 <Rating rate={product.rating?.rate} />
               </>
             }
-            onClick={() => navigate(`${ROUTES.PRODUCTS}/${product.id}`)}
+            onClick={() => navigate(`/${ROUTES.PRODUCTS}/${product.id}`)}
           />
         ))}
       </div>
