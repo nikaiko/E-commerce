@@ -14,21 +14,23 @@
     font-size: 14px;
   }
 
-  &_primary {
-    background-color: $smaltblue;
+  &_color {
+    &-primary {
+      background-color: $smaltblue;
 
-    &:hover {
-      opacity: 0.7;
+      &:hover {
+        opacity: 0.7;
+      }
     }
-  }
 
-  &_secondary {
-    background-color: white;
-    color: $text-color;
-    border: 2px solid #f3f3f3;
+    &-secondary {
+      background-color: white;
+      color: $text-color;
+      border: 2px solid #f3f3f3;
 
-    &:hover {
-      opacity: 0.7;
+      &:hover {
+        opacity: 0.7;
+      }
     }
   }
 

@@ -6,9 +6,9 @@ import { ButtonColor } from "@components/Button/Button";
 import Card from "@components/Card";
 import Rating from "@components/Rating";
 import ReadMoreLess from "@components/ReadMoreLess";
-import ROUTES from "@configs/routes";
+import routes from "@configs/routes";
 import IProduct from "@entities/IProduct";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import styles from "./ProductDetail.module.scss";
 
@@ -17,7 +17,6 @@ const ProductDetail: React.FC = () => {
   const [relatedItems, setRelatedItems] = React.useState<IProduct[]>([]);
 
   const { id } = useParams();
-  const navigate = useNavigate();
 
   React.useEffect(() => {
     try {
@@ -32,10 +31,6 @@ const ProductDetail: React.FC = () => {
       alert(e);
     }
   }, [id]);
-
-  if (!product) {
-    return <p>Not Found</p>;
-  }
 
   return (
     <div>
@@ -75,13 +70,13 @@ const ProductDetail: React.FC = () => {
                 image={item.image}
                 category={item.category}
                 title={item.title}
+                to={routes.products.detail.createRoot(item.id)}
                 content={
                   <>
                     <h3>${item.price}</h3>
                     <Rating rate={item.rating?.rate} />
                   </>
                 }
-                onClick={() => navigate(`/${ROUTES.PRODUCTS}/${item.id}`)}
               />
             ))}
         </div>

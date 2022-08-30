@@ -6,17 +6,14 @@ import Counter from "@components/Counter";
 import Filter from "@components/Filter";
 import Rating from "@components/Rating";
 import Search from "@components/Search";
-import ROUTES from "@configs/routes";
+import routes from "@configs/routes";
 import IProduct from "@entities/IProduct";
-import { useNavigate } from "react-router-dom";
 
 import styles from "./Products.module.scss";
 
 const Products: React.FC = () => {
   const [products, setProducts] = React.useState<IProduct[]>([]);
   const [total, setTotal] = React.useState<number>(0);
-
-  const navigate = useNavigate();
 
   React.useEffect(() => {
     ProductApi.fetchProducts().then((data: IProduct[]) => {
@@ -49,13 +46,13 @@ const Products: React.FC = () => {
             image={product.image}
             category={product.category}
             title={product.title}
+            to={routes.products.detail.createRoot(product.id)}
             content={
               <>
                 <h3>${product.price}</h3>
                 <Rating rate={product.rating?.rate} />
               </>
             }
-            onClick={() => navigate(`/${ROUTES.PRODUCTS}/${product.id}`)}
           />
         ))}
       </div>

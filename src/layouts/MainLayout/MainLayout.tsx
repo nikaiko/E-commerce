@@ -3,13 +3,13 @@ import React from "react";
 import Header from "@components/Header";
 import { Outlet } from "react-router-dom";
 
-import styles from "./MainLayout.module.scss";
+import s from "./MainLayout.module.scss";
 
 const MainLayout: React.FC = () => {
   return (
-    <div className={styles.wrapper}>
+    <div className={s.wrapper}>
       <Header />
-      <div className={styles.content}>
+      <div className={s.content}>
         <Outlet />
       </div>
     </div>
