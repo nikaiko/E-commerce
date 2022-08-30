@@ -1,6 +1,6 @@
 import IProduct from "@entities/IProduct";
 
-import { $api } from "..";
+import { $api } from "../index";
 
 export default class ProductApi {
   static fetchProducts = async () => {
@@ -8,7 +8,7 @@ export default class ProductApi {
     return data;
   };
 
-  static fetchProductsByCategory = async (category: string | undefined) => {
+  static fetchProductsByCategory = async (category: string) => {
     const { data } = await $api.get<IProduct[]>(
       `/products/category/${category}`
     );
