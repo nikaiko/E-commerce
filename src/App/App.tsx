@@ -3,10 +3,10 @@ import React from "react";
 import routes from "@configs/routes";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
-import MainLayout from "../layouts/MainLayout";
-import MainPage from "../pages/MainPage";
-import ProductDetail from "../pages/ProductDetail";
-import Products from "../pages/Products";
+import MainLayout from "./layouts/MainLayout";
+import MainPage from "./pages/MainPage";
+import ProductDetail from "./pages/ProductDetail";
+import Products from "./pages/Products";
 
 const App: React.FC = () => {
   return (

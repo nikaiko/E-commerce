@@ -1,36 +1,58 @@
 import React from "react";
 
-import ProductApi from "@api/ProductApi";
 import Button from "@components/Button";
 import { ButtonColor } from "@components/Button/Button";
 import Card from "@components/Card";
+import Loader from "@components/Loader";
 import Rating from "@components/Rating";
 import ReadMoreLess from "@components/ReadMoreLess";
 import routes from "@configs/routes";
-import IProduct from "@entities/IProduct";
+import ProductModel from "@store/models/ProductModel";
+import {
+  requestProductsFromCategory,
+  requestSingleProduct,
+} from "@store/ProductStore/requestProductStore";
+import Meta from "@utils/meta";
 import { useParams } from "react-router-dom";
 
 import styles from "./ProductDetail.module.scss";
 
 const ProductDetail: React.FC = () => {
-  const [product, setProduct] = React.useState<IProduct>();
-  const [relatedItems, setRelatedItems] = React.useState<IProduct[]>([]);
+  const [product, setProduct] = React.useState<ProductModel | null>(null);
+  const [relatedItems, setRelatedItems] = React.useState<ProductModel[]>([]);
+  const [meta, setMeta] = React.useState(Meta.initial);
 
   const { id } = useParams();
 
   React.useEffect(() => {
-    try {
-      ProductApi.fetchProduct(id)
-        .then((data) => {
-          setProduct(data);
-          return data;
-        })
-        .then((data) => ProductApi.fetchProductsByCategory(data.category))
-        .then((data) => setRelatedItems(data));
-    } catch (e) {
-      alert(e);
-    }
+    setMeta(Meta.loading);
+    setProduct(null);
+    setRelatedItems([]);
+
+    requestSingleProduct(id)
+      .then((response) => {
+        if (response.isError) {
+          setMeta(Meta.error);
+          return;
+        }
+
+        setProduct(response.data);
+        return requestProductsFromCategory(response.data.category);
+      })
+      .then((response) => {
+        if (response?.isError || !response?.data) {
+          setMeta(Meta.error);
+          return;
+        }
+
+        setRelatedItems(response.data);
+        setMeta(Meta.success);
+      });
   }, [id]);
+
+  if (meta === Meta.loading) {
+    return <Loader />;
+  }
 
   return (
     <div>

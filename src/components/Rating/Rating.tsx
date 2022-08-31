@@ -1,7 +1,9 @@
 import React from "react";
 
 import Counter from "@components/Counter";
+import range from "@utils/range";
 
+import Star from "./components/Star";
 import styles from "./Rating.module.scss";
 
 type RatingProps = {
@@ -10,32 +12,20 @@ type RatingProps = {
   className?: string;
 };
 
-const Rating: React.FC<RatingProps> = ({ rate, count, className }) => {
+const Rating: React.FC<RatingProps> = ({ rate = 0, count, className }) => {
   return (
     <div className={className}>
       {count ? (
         <div className={styles.rating}>
-          {[...Array(5)].map((__, id) => {
-            id += 1;
-            return (
-              <div
-                key={id}
-                className={
-                  id <= (rate || 0)
-                    ? styles.rating__star_on
-                    : styles.rating__star_off
-                }
-              >
-                &#9733;
-              </div>
-            );
-          })}
+          {range(5).map((id) => (
+            <Star key={id} mode={++id <= rate} />
+          ))}
           <h5>{rate}</h5>
           <Counter count={count} />
         </div>
       ) : (
         <div className={styles.rating}>
-          <div className={styles.rating__star_on}>&#9733;</div>
+          <Star />
           <h3>{rate}</h3>
         </div>
       )}

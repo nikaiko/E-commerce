@@ -1,5 +1,7 @@
 @import "@styles/variables.scss";
 
+$color-line: #151411;
+
 .menu,
 .menu__popup {
   filter: drop-shadow(0px 4px 120px rgba(175, 173, 181, 0.15));
@@ -25,7 +27,7 @@
     width: 100px;
     height: 38px;
     @include text(400, 14px, 16px);
-    background-color: white;
+    background-color: $color-controller-bg;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -41,27 +43,27 @@
     position: relative;
     width: 22.5px;
 
-    span {
+    .line {
       width: 100%;
       height: 2px;
-      background: #151411;
+      background: $color-line;
       transition: 0.3s all ease;
       border-radius: 2px;
 
-      &:nth-child(1) {
+      &__top {
         position: absolute;
         left: 0;
         top: 0;
       }
 
-      &:nth-child(2) {
+      &__mid {
         position: absolute;
         left: 0;
         top: 50%;
         transform: translate(0, -50%);
       }
 
-      &:nth-child(3) {
+      &__bot {
         position: absolute;
         left: 0;
         bottom: 0;
@@ -70,16 +72,16 @@
   }
 
   &__button_open {
-    span {
-      &:nth-child(1) {
+    .line {
+      &__top {
         transform: translateY(8px) rotate(45deg);
         transition: 0.3s all ease;
       }
-      &:nth-child(2) {
+      &__mid {
         opacity: 0;
         transition: 0.3s all ease;
       }
-      &:nth-child(3) {
+      &__bot {
         transform: translateY(-11px) rotate(-45deg);
         transition: 0.3s all ease;
       }

@@ -1,6 +1,9 @@
 $smaltblue: #518581;
 $text-color: #151411;
 $paragraph-color: #afadb5;
+$color-star-on: #ffb800;
+$color-star-off: #ccc;
+$color-controller-bg: #ffffff;
 
 @mixin container($p-top: 0) {
   padding: $p-top calc(50% - 620px) 0;

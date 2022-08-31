@@ -4,11 +4,11 @@ import filterIcon from "@assets/images/filter-icon.svg";
 import filterTitle from "@assets/images/filter-title.svg";
 import Button from "@components/Button";
 
-import styles from "./Filter.module.scss";
+import s from "./Filter.module.scss";
 
-const Filter = () => {
+const Filter: React.FC = () => {
   return (
-    <Button className={styles.filter}>
+    <Button className={s.filter}>
       <img src={filterIcon} alt="filter-icon" />
       <img src={filterTitle} alt="filter-title" />
     </Button>

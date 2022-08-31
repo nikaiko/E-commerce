@@ -1,21 +1,26 @@
 import React from "react";
 
+import cn from "classnames";
 import { NavLink } from "react-router-dom";
 
 import styles from "./MenuButton.module.scss";
 
-const MenuButton = () => {
+const MenuButton: React.FC = () => {
   const [open, setOpen] = React.useState(false);
+
+  const handleClick = React.useCallback(() => {
+    setOpen(!open);
+  }, [open]);
 
   return (
     <div className={styles.menu}>
       <div
         className={open ? styles.menu__button_open : styles.menu__button}
-        onClick={() => setOpen(!open)}
+        onClick={handleClick}
       >
-        <span />
-        <span />
-        <span />
+        <span className={cn(styles.line, styles.line__top)} />
+        <span className={cn(styles.line, styles.line__mid)} />
+        <span className={cn(styles.line, styles.line__bot)} />
       </div>
       {open && (
         <nav className={styles.menu__popup}>

@@ -1,4 +1,4 @@
-interface IProduct {
+type ProductModel = {
   id: string;
   title: string;
   price: number;
@@ -9,6 +9,6 @@ interface IProduct {
     rate: number;
     count: number;
   };
-}
+};
 
-export default IProduct;
+export default ProductModel;

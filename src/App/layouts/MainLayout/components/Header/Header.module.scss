@@ -1,5 +1,7 @@
 @import "@styles/variables.scss";
 
+$color-border-bottom: #f3f3f3;
+
 .header {
   @include container;
   display: flex;
@@ -7,7 +9,7 @@
   align-items: center;
 
   height: 120px;
-  border-bottom: 1px solid #f3f3f3;
+  border-bottom: 1px solid $color-border-bottom;
 
   &__logoTitle {
     display: flex;

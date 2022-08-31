@@ -1,26 +1,43 @@
 import React from "react";
 
-import ProductApi from "@api/ProductApi";
 import Card from "@components/Card";
 import Counter from "@components/Counter";
 import Filter from "@components/Filter";
+import Loader from "@components/Loader";
 import Rating from "@components/Rating";
 import Search from "@components/Search";
 import routes from "@configs/routes";
-import IProduct from "@entities/IProduct";
+import ProductModel from "@store/models/ProductModel";
+import { requestAllProducts } from "@store/ProductStore/requestProductStore";
+import Meta from "@utils/meta";
 
 import styles from "./Products.module.scss";
 
 const Products: React.FC = () => {
-  const [products, setProducts] = React.useState<IProduct[]>([]);
-  const [total, setTotal] = React.useState<number>(0);
+  const [products, setProducts] = React.useState<ProductModel[]>([]);
+  const [total, setTotal] = React.useState(0);
+  const [meta, setMeta] = React.useState(Meta.initial);
 
   React.useEffect(() => {
-    ProductApi.fetchProducts().then((data: IProduct[]) => {
-      setProducts(data);
-      setTotal(data.length);
+    setMeta(Meta.loading);
+    setProducts([]);
+    setTotal(0);
+
+    requestAllProducts().then((response) => {
+      if (response.isError) {
+        setMeta(Meta.error);
+        return;
+      }
+
+      setProducts(response.data);
+      setTotal(response.data.length);
+      setMeta(Meta.success);
     });
   }, []);
+
+  if (meta === Meta.loading) {
+    return <Loader />;
+  }
 
   return (
     <div className={styles.products}>

@@ -1,7 +1,7 @@
 @import "@styles/variables.scss";
 
 .button {
-  @include text(700, 18px, 130%, white);
+  @include text(700, 18px, 130%, $color-controller-bg);
   width: 138px;
   height: 54px;
   text-align: center;
@@ -24,7 +24,7 @@
     }
 
     &-secondary {
-      background-color: white;
+      background-color: $color-controller-bg;
       color: $text-color;
       border: 2px solid #f3f3f3;
 
@@ -45,6 +45,6 @@
 }
 
 .loader {
-  border-color: white;
+  border-color: $color-controller-bg;
   border-bottom-color: transparent;
 }

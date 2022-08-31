@@ -1,10 +1,12 @@
+@import "@styles/variables.scss";
+
 .filter {
   box-shadow: 0px 4px 120px rgba(175, 173, 181, 0.15);
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 12px;
-  background-color: white;
+  background-color: $color-controller-bg;
   height: 84px;
   width: 190px;
 
