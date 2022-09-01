@@ -7,55 +7,70 @@ import Loader from "@components/Loader";
 import Rating from "@components/Rating";
 import ReadMoreLess from "@components/ReadMoreLess";
 import routes from "@configs/routes";
-import ProductModel from "@store/models/ProductModel";
+import ProductDetailStore from "@store/ProductDetailStore";
+import log from "@utils/log";
 import Meta from "@utils/meta";
+import { useLocalStore } from "@utils/useLocalStore";
+import { toJS } from "mobx";
+import { observer } from "mobx-react-lite";
 import { useParams } from "react-router-dom";
 
-import styles from "./ProductDetail.module.scss";
+import s from "./ProductDetail.module.scss";
 
 const ProductDetail: React.FC = () => {
-  const [product, setProduct] = React.useState<ProductModel | null>(null);
-  const [relatedItems, setRelatedItems] = React.useState<ProductModel[]>([]);
-  const [meta, setMeta] = React.useState(Meta.initial);
-
+  // const [product, setProduct] = React.useState<ProductModel | null>(null);
+  // const [relatedItems, setRelatedItems] = React.useState<ProductModel[]>([]);
+  // const [meta, setMeta] = React.useState(Meta.initial);
+  const productDetailStore = useLocalStore(() => new ProductDetailStore());
   const { id } = useParams();
 
-  if (meta === Meta.loading) {
+  React.useEffect(() => {
+    productDetailStore.getProduct(id);
+    log(toJS(productDetailStore.relatedProducts));
+  }, [id, productDetailStore]);
+
+  if (productDetailStore.meta === Meta.loading) {
     return <Loader />;
   }
 
   return (
     <div>
-      <div className={styles.product}>
+      <div className={s.product}>
         <img
-          src={product?.image}
-          alt={product?.image}
-          className={styles.product__image}
+          src={productDetailStore.product?.image}
+          alt={productDetailStore.product?.image}
+          className={s.product__image}
         />
-        <div className={styles.product__info}>
-          <h2 className={styles.product__title}>{product?.title}</h2>
-          <div className={styles.product__category}>{product?.category}</div>
+        <div className={s.product__info}>
+          <h2 className={s.product__title}>
+            {productDetailStore.product?.title}
+          </h2>
+          <div className={s.product__category}>
+            {productDetailStore.product?.category}
+          </div>
           <Rating
-            rate={product?.rating.rate}
-            count={product?.rating.count}
-            className={styles.product__rating}
+            rate={productDetailStore.product?.rating.rate}
+            count={productDetailStore.product?.rating.count}
+            className={s.product__rating}
           />
           <ReadMoreLess
-            text={product?.description}
-            className={styles.product__description}
+            text={productDetailStore.product?.description}
+            className={s.product__description}
           />
-          <h2 className={styles.product__price}>${product?.price}</h2>
-          <div className={styles.product__buttons}>
+          <h2 className={s.product__price}>
+            ${productDetailStore.product?.price}
+          </h2>
+          <div className={s.product__buttons}>
             <Button>Buy Now</Button>
             <Button color={ButtonColor.secondary}>Add to Chart</Button>
           </div>
         </div>
       </div>
-      <div className={styles.relatedItems}>
-        <h5 className={styles.relatedItems__title}>Related Items</h5>
-        <div className={styles.relatedItems__list}>
-          {relatedItems
-            .filter((item) => item.id !== product?.id)
+      <div className={s.relatedItems}>
+        <h5 className={s.relatedItems__title}>Related Items</h5>
+        <div className={s.relatedItems__list}>
+          {productDetailStore.relatedProducts
+            .filter((item) => item.id !== productDetailStore.product?.id)
             .map((item) => (
               <Card
                 key={item.id}
@@ -77,4 +92,4 @@ const ProductDetail: React.FC = () => {
   );
 };
 
-export default ProductDetail;
+export default observer(ProductDetail);

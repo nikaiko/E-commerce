@@ -22,7 +22,7 @@ export default class ApiStore {
   }
 
   static async fetchSingleProduct(
-    id?: string
+    id: string | undefined
   ): Promise<ApiResponse<ProductModel>> {
     try {
       const response = await axios(apiUrls.products.single(id));
@@ -40,7 +40,7 @@ export default class ApiStore {
   }
 
   static async fetchProductsFromCategory(
-    category?: string
+    category: string | undefined
   ): Promise<ApiResponse<ProductModel[]>> {
     try {
       const response = await axios(apiUrls.products.fromCategory(category));

@@ -7,20 +7,20 @@ import titleSvg from "@assets/images/title.svg";
 import { Link, NavLink } from "react-router-dom";
 
 import MenuButton from "./components/MenuButton";
-import styles from "./Header.module.scss";
+import s from "./Header.module.scss";
 
 const Header: React.FC = () => {
   return (
-    <header className={styles.header}>
-      <Link to="/" className={styles.header__logoTitle}>
-        <img src={logoSvg} alt="logo-svg" className={styles.header__logo} />
-        <img src={titleSvg} alt="title" className={styles.header__title} />
+    <header className={s.header}>
+      <Link to="/" className={s.header__logoTitle}>
+        <img src={logoSvg} alt="logo-svg" className={s.header__logo} />
+        <img src={titleSvg} alt="title" className={s.header__title} />
       </Link>
-      <nav className={styles.header__nav}>
+      <nav className={s.header__nav}>
         <NavLink
           to="/products"
           className={({ isActive }) =>
-            isActive ? styles.header__link_active : styles.header__link
+            isActive ? s.header__link_active : s.header__link
           }
         >
           Product
@@ -28,7 +28,7 @@ const Header: React.FC = () => {
         <NavLink
           to="/services"
           className={({ isActive }) =>
-            isActive ? styles.header__link_active : styles.header__link
+            isActive ? s.header__link_active : s.header__link
           }
         >
           Services
@@ -36,7 +36,7 @@ const Header: React.FC = () => {
         <NavLink
           to="/article"
           className={({ isActive }) =>
-            isActive ? styles.header__link_active : styles.header__link
+            isActive ? s.header__link_active : s.header__link
           }
         >
           Article
@@ -44,13 +44,13 @@ const Header: React.FC = () => {
         <NavLink
           to="/about"
           className={({ isActive }) =>
-            isActive ? styles.header__link_active : styles.header__link
+            isActive ? s.header__link_active : s.header__link
           }
         >
           About Us
         </NavLink>
       </nav>
-      <div className={styles.header__icons}>
+      <div className={s.header__icons}>
         <Link to="/profile">
           <img src={profileIcon} alt="profile-icon" />
         </Link>

@@ -3,7 +3,7 @@ import React from "react";
 import cn from "classnames";
 import { NavLink } from "react-router-dom";
 
-import styles from "./MenuButton.module.scss";
+import s from "./MenuButton.module.scss";
 
 const MenuButton: React.FC = () => {
   const [open, setOpen] = React.useState(false);
@@ -13,21 +13,21 @@ const MenuButton: React.FC = () => {
   }, [open]);
 
   return (
-    <div className={styles.menu}>
+    <div className={s.menu}>
       <div
-        className={open ? styles.menu__button_open : styles.menu__button}
+        className={open ? s.menu__button_open : s.menu__button}
         onClick={handleClick}
       >
-        <span className={cn(styles.line, styles.line__top)} />
-        <span className={cn(styles.line, styles.line__mid)} />
-        <span className={cn(styles.line, styles.line__bot)} />
+        <span className={cn(s.line, s.line__top)} />
+        <span className={cn(s.line, s.line__mid)} />
+        <span className={cn(s.line, s.line__bot)} />
       </div>
       {open && (
-        <nav className={styles.menu__popup}>
+        <nav className={s.menu__popup}>
           <NavLink
             to="/profile"
             className={({ isActive }) =>
-              isActive ? styles.menu__link_active : styles.menu__link
+              isActive ? s.menu__link_active : s.menu__link
             }
           >
             Profile
@@ -35,7 +35,7 @@ const MenuButton: React.FC = () => {
           <NavLink
             to="/basket"
             className={({ isActive }) =>
-              isActive ? styles.menu__link_active : styles.menu__link
+              isActive ? s.menu__link_active : s.menu__link
             }
           >
             Basket
@@ -43,7 +43,7 @@ const MenuButton: React.FC = () => {
           <NavLink
             to="/products"
             className={({ isActive }) =>
-              isActive ? styles.menu__link_active : styles.menu__link
+              isActive ? s.menu__link_active : s.menu__link
             }
           >
             Product
@@ -51,7 +51,7 @@ const MenuButton: React.FC = () => {
           <NavLink
             to="/services"
             className={({ isActive }) =>
-              isActive ? styles.menu__link_active : styles.menu__link
+              isActive ? s.menu__link_active : s.menu__link
             }
           >
             Services
@@ -59,7 +59,7 @@ const MenuButton: React.FC = () => {
           <NavLink
             to="/article"
             className={({ isActive }) =>
-              isActive ? styles.menu__link_active : styles.menu__link
+              isActive ? s.menu__link_active : s.menu__link
             }
           >
             Article
@@ -67,7 +67,7 @@ const MenuButton: React.FC = () => {
           <NavLink
             to="/about"
             className={({ isActive }) =>
-              isActive ? styles.menu__link_active : styles.menu__link
+              isActive ? s.menu__link_active : s.menu__link
             }
           >
             About Us
