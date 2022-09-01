@@ -1,4 +1,4 @@
-type ApiResp<SuccessData = any, ErrorData = any> =
+type ApiResponse<SuccessData = any, ErrorData = any> =
   | {
       isError: false;
       data: SuccessData;
@@ -8,4 +8,4 @@ type ApiResp<SuccessData = any, ErrorData = any> =
       data: ErrorData;
     };
 
-export default ApiResp;
+export default ApiResponse;

@@ -30,13 +30,5 @@
       right: 8px;
       top: 8px;
     }
-
-    &::after {
-      content: "Find Now";
-
-      @media (max-width: 1240px) {
-        content: "Search";
-      }
-    }
   }
 }

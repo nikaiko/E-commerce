@@ -8,10 +8,6 @@ import Rating from "@components/Rating";
 import ReadMoreLess from "@components/ReadMoreLess";
 import routes from "@configs/routes";
 import ProductModel from "@store/models/ProductModel";
-import {
-  requestProductsFromCategory,
-  requestSingleProduct,
-} from "@store/ProductStore/requestProductStore";
 import Meta from "@utils/meta";
 import { useParams } from "react-router-dom";
 
@@ -23,32 +19,6 @@ const ProductDetail: React.FC = () => {
   const [meta, setMeta] = React.useState(Meta.initial);
 
   const { id } = useParams();
-
-  React.useEffect(() => {
-    setMeta(Meta.loading);
-    setProduct(null);
-    setRelatedItems([]);
-
-    requestSingleProduct(id)
-      .then((response) => {
-        if (response.isError) {
-          setMeta(Meta.error);
-          return;
-        }
-
-        setProduct(response.data);
-        return requestProductsFromCategory(response.data.category);
-      })
-      .then((response) => {
-        if (response?.isError || !response?.data) {
-          setMeta(Meta.error);
-          return;
-        }
-
-        setRelatedItems(response.data);
-        setMeta(Meta.success);
-      });
-  }, [id]);
 
   if (meta === Meta.loading) {
     return <Loader />;

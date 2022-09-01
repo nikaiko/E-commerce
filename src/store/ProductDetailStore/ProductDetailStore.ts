@@ -2,7 +2,7 @@ import ProductModel from "@store/models/ProductModel";
 import Meta from "@utils/meta";
 import { makeObservable, observable } from "mobx";
 
-class ProductStore {
+export default class ProductDetailStore {
   _products: ProductModel[] = [];
   _selectedProduct: ProductModel | null = null;
   _meta: Meta = Meta.initial;
@@ -30,5 +30,3 @@ class ProductStore {
     return this._selectedProduct;
   }
 }
-
-export default ProductStore;

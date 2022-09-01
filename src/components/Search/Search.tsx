@@ -16,7 +16,7 @@ const Search = () => {
         className={styles.search__input}
         placeholder="Search property"
       />
-      <Button className={styles.search__button} />
+      <Button className={styles.search__button}>Find</Button>
     </div>
   );
 };

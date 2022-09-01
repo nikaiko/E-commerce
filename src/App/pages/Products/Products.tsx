@@ -7,35 +7,28 @@ import Loader from "@components/Loader";
 import Rating from "@components/Rating";
 import Search from "@components/Search";
 import routes from "@configs/routes";
-import ProductModel from "@store/models/ProductModel";
-import { requestAllProducts } from "@store/ProductStore/requestProductStore";
+import ProductsStore from "@store/ProductsStore";
+import { useQueryParamsStoreInit } from "@store/RootStore/hooks/useQueryParamsStoreInit";
 import Meta from "@utils/meta";
+import { useLocalStore } from "@utils/useLocalStore";
+import { observer } from "mobx-react-lite";
 
 import styles from "./Products.module.scss";
 
 const Products: React.FC = () => {
-  const [products, setProducts] = React.useState<ProductModel[]>([]);
-  const [total, setTotal] = React.useState(0);
-  const [meta, setMeta] = React.useState(Meta.initial);
+  useQueryParamsStoreInit();
+
+  const productsStore = useLocalStore(() => new ProductsStore());
 
   React.useEffect(() => {
-    setMeta(Meta.loading);
-    setProducts([]);
-    setTotal(0);
+    productsStore.getProducts();
 
-    requestAllProducts().then((response) => {
-      if (response.isError) {
-        setMeta(Meta.error);
-        return;
-      }
+    // return () => {
+    //   second
+    // }
+  }, [productsStore]);
 
-      setProducts(response.data);
-      setTotal(response.data.length);
-      setMeta(Meta.success);
-    });
-  }, []);
-
-  if (meta === Meta.loading) {
+  if (productsStore.meta === Meta.loading) {
     return <Loader />;
   }
 
@@ -54,10 +47,10 @@ const Products: React.FC = () => {
       </div>
       <div className={styles.products__total}>
         <h2>Total Products</h2>
-        <Counter count={total} />
+        <Counter count={productsStore.products.length} />
       </div>
       <div className={styles.products__list}>
-        {products.map((product) => (
+        {productsStore.products.map((product) => (
           <Card
             key={product.id}
             image={product.image}
@@ -78,4 +71,4 @@ const Products: React.FC = () => {
   );
 };
 
-export default Products;
+export default observer(Products);
