@@ -8,18 +8,17 @@ import Rating from "@components/Rating";
 import Search from "@components/Search";
 import routes from "@configs/routes";
 import ProductsStore from "@store/ProductsStore";
-import { useQueryParamsStoreInit } from "@store/RootStore/hooks/useQueryParamsStoreInit";
+import log from "@utils/log";
 import Meta from "@utils/meta";
 import { useLocalStore } from "@utils/useLocalStore";
 import { observer } from "mobx-react-lite";
+import { useLocation } from "react-router-dom";
 
 import styles from "./Products.module.scss";
 
 const Products: React.FC = () => {
-  useQueryParamsStoreInit();
-
   const productsStore = useLocalStore(() => new ProductsStore());
-
+  const [q, setq] = React.useState("");
   React.useEffect(() => {
     productsStore.getProducts();
 
@@ -34,6 +33,8 @@ const Products: React.FC = () => {
 
   return (
     <div className={styles.products}>
+      <input type="search" onChange={(e) => setq(e.target.value)} />
+
       <div className={styles.products__title}>
         <h1>Products</h1>
         <p>

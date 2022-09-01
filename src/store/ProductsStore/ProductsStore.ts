@@ -1,11 +1,15 @@
 import ApiStore from "@store/ApiStore";
 import ProductModel from "@store/models/ProductModel";
+import rootStore from "@store/RootStore";
+import log from "@utils/log";
 import Meta from "@utils/meta";
 import {
   action,
   computed,
+  IReactionDisposer,
   makeObservable,
   observable,
+  reaction,
   runInAction,
 } from "mobx";
 
@@ -50,5 +54,14 @@ export default class ProductsStore {
     return this._meta;
   }
 
-  destroy(): void {}
+  destroy(): void {
+    this._qpReaction();
+  }
+
+  private readonly _qpReaction: IReactionDisposer = reaction(
+    () => rootStore.query.getParam("search"),
+    (search) => {
+      log("search value change", search);
+    }
+  );
 }

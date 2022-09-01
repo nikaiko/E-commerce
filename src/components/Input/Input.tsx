@@ -17,11 +17,12 @@ const Input: React.FC<InputProps> = ({
   onChange,
   className = "",
   disabled = false,
+  type = "text",
   ...rest
 }) => {
   return (
     <input
-      type="text"
+      type={type}
       value={value}
       onChange={(e) => onChange(e.target.value)}
       className={classNames(
