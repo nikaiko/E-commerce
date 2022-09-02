@@ -12,7 +12,6 @@ import {
   reaction,
   runInAction,
 } from "mobx";
-import * as qs from "qs";
 
 type PrivateFields = "_meta" | "_products";
 

@@ -2,17 +2,17 @@ import React from "react";
 
 import Counter from "@components/Counter";
 import Filter from "@components/Filter";
+import List from "@components/List";
 import Loader from "@components/Loader";
+import Pagination from "@components/Pagination";
 import Search from "@components/Search";
 import ProductsStore from "@store/ProductsStore";
 import { useQueryParamsStoreInit } from "@store/RootStore/hooks/useQueryParamsStoreInit";
-import log from "@utils/log";
 import Meta from "@utils/meta";
 import { useLocalStore } from "@utils/useLocalStore";
 import { observer } from "mobx-react-lite";
 
-import List from "./components/List";
-import styles from "./Products.module.scss";
+import s from "./Products.module.scss";
 
 const Products: React.FC = () => {
   useQueryParamsStoreInit();
@@ -32,24 +32,24 @@ const Products: React.FC = () => {
   }
 
   return (
-    <div className={styles.products}>
-      <div className={styles.products__title}>
-        <h1>Products</h1>
-        <p>
+    <div className={s.products}>
+      <div className={s.products__head}>
+        <h1 className={s.head__title}>Products</h1>
+        <p className={s.head__info}>
           We display products based on the latest products we have, if you want
           to see our old products please enter the name of the item
         </p>
       </div>
-      <div className={styles.products__panel}>
+      <div className={s.products__panel}>
         <Search />
         <Filter />
       </div>
-      <div className={styles.products__total}>
-        <h2>Total Products</h2>
+      <div className={s.products__total}>
+        <h2 className={s.total__title}>Total Products</h2>
         <Counter count={productsStore.products.length} />
       </div>
-      <List list={productsStore.products} />
-      <div className={styles.products__pagination}>Pagination</div>
+      <List list={productsStore.products} className={s.products__list} />
+      <Pagination className={s.products__pagination} />
     </div>
   );
 };

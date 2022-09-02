@@ -9,42 +9,41 @@ import {
   runInAction,
 } from "mobx";
 
-type PrivateFields = "_relatedProducts" | "_product" | "_meta";
+type PrivateFields = "_relatedProducts" | "_currentProduct" | "_meta";
 
 export default class ProductDetailStore {
   private _relatedProducts: ProductModel[] = [];
-  private _product: ProductModel | null = null;
+  private _currentProduct: ProductModel | null = null;
   private _meta: Meta = Meta.initial;
 
   constructor() {
     makeObservable<ProductDetailStore, PrivateFields>(this, {
-      _relatedProducts: observable,
-      _product: observable,
+      _relatedProducts: observable.ref,
+      _currentProduct: observable.ref,
       _meta: observable,
       meta: computed,
-      product: computed,
+      currentProduct: computed,
       relatedProducts: computed,
-      getProduct: action,
+      getProducts: action.bound,
     });
   }
 
-  async getProduct(id: string | undefined) {
+  async getProducts(id?: string) {
     this._meta = Meta.loading;
-    this._product = null;
+    this._currentProduct = null;
 
     const respProduct = await ApiStore.fetchSingleProduct(id);
     const respRelated = await ApiStore.fetchProductsFromCategory(
       respProduct.data.category
     );
 
-    if (respProduct.isError) {
-      this._meta = Meta.error;
-      return;
-    }
-
     runInAction(() => {
+      if (respProduct.isError) {
+        this._meta = Meta.error;
+        return;
+      }
       this._meta = Meta.success;
-      this._product = respProduct.data;
+      this._currentProduct = respProduct.data;
       this._relatedProducts = respRelated.data;
     });
   }
@@ -57,8 +56,8 @@ export default class ProductDetailStore {
     return this._meta;
   }
 
-  get product() {
-    return this._product;
+  get currentProduct() {
+    return this._currentProduct;
   }
 
   destroy(): void {}

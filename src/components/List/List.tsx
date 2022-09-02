@@ -3,15 +3,14 @@ import React from "react";
 import Card from "@components/Card";
 import ProductModel from "@store/models/ProductModel";
 
-import s from "./List.module.scss";
-
 type ListProps = {
   list: ProductModel[];
+  className?: string;
 };
 
-const List: React.FC<ListProps> = ({ list }) => {
+const List: React.FC<ListProps> = ({ list, className }) => {
   return (
-    <div className={s.list}>
+    <div className={className}>
       {list.map((item) => (
         <Card item={item} key={item.id} />
       ))}
