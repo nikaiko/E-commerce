@@ -68,6 +68,7 @@ export default class ProductsStore {
     (search) => {
       log("search value change", search);
       this.getProducts(search?.toString());
+      log(this._products);
     }
   );
 }
