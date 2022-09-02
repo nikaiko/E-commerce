@@ -1,43 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 
 import Button from "@components/Button";
 import Input from "@components/Input";
-import log from "@utils/log";
 import { useSearchParams } from "react-router-dom";
 
 import styles from "./Search.module.scss";
 
 const Search: React.FC = () => {
-  const [search, setSearch] = React.useState("");
-  const [, setQs] = useSearchParams({});
+  const [searchparams, setSearchParams] = useSearchParams();
+  const [search, setSearch] = useState(searchparams.get("search") || "");
 
-  const handleChange = (e: any) => {
-    setSearch(e.target.value);
-  };
-
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
-    log(e.target);
-    if (!search) {
-      setQs({});
-      return;
+  const handleClick = () => {
+    if (search) {
+      setSearchParams({ search });
+    } else {
+      setSearchParams({});
     }
-    setQs({ search: search });
   };
 
   return (
-    <form className={styles.search} onSubmit={handleSubmit}>
+    <div className={styles.search}>
       <Input
         value={search}
-        onChange={handleChange}
+        onChange={(e) => {
+          setSearch(e.target.value || "");
+        }}
         className={styles.search__input}
         placeholder="Search property"
-        name="search"
+        type={"text"}
       />
-      <Button className={styles.search__button} type="submit">
+      <Button className={styles.search__button} onClick={handleClick}>
         Find
       </Button>
-    </form>
+    </div>
   );
 };
 

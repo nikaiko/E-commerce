@@ -12,6 +12,7 @@ import {
   reaction,
   runInAction,
 } from "mobx";
+import * as qs from "qs";
 
 type PrivateFields = "_meta" | "_products";
 
@@ -25,24 +26,29 @@ export default class ProductsStore {
       _meta: observable,
       products: computed,
       meta: computed,
-      getProducts: action,
+      getProducts: action.bound,
     });
   }
 
-  async getProducts() {
+  async getProducts(query?: string) {
     this._meta = Meta.loading;
     this._products = [];
 
     const response = await ApiStore.fetchAllProducts();
 
-    if (response.isError) {
-      this._meta = Meta.error;
-      return;
-    }
-
     runInAction(() => {
+      if (response.isError) {
+        this._meta = Meta.error;
+        return;
+      }
+
+      log("query ", query);
       this._meta = Meta.success;
-      this._products = response.data;
+      this._products = query
+        ? response.data.filter((product) =>
+            product.title.toLowerCase().includes(query.toLowerCase())
+          )
+        : response.data;
     });
   }
 
@@ -62,6 +68,7 @@ export default class ProductsStore {
     () => rootStore.query.getParam("search"),
     (search) => {
       log("search value change", search);
+      this.getProducts(search?.toString());
     }
   );
 }

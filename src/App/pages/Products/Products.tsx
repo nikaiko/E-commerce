@@ -1,28 +1,30 @@
 import React from "react";
 
-import Card from "@components/Card";
 import Counter from "@components/Counter";
 import Filter from "@components/Filter";
 import Loader from "@components/Loader";
-import Rating from "@components/Rating";
 import Search from "@components/Search";
-import routes from "@configs/routes";
 import ProductsStore from "@store/ProductsStore";
+import { useQueryParamsStoreInit } from "@store/RootStore/hooks/useQueryParamsStoreInit";
+import log from "@utils/log";
 import Meta from "@utils/meta";
 import { useLocalStore } from "@utils/useLocalStore";
 import { observer } from "mobx-react-lite";
 
+import List from "./components/List";
 import styles from "./Products.module.scss";
 
 const Products: React.FC = () => {
+  useQueryParamsStoreInit();
+
   const productsStore = useLocalStore(() => new ProductsStore());
 
   React.useEffect(() => {
     productsStore.getProducts();
 
-    // return () => {
-    //   second
-    // }
+    return () => {
+      productsStore.destroy();
+    };
   }, [productsStore]);
 
   if (productsStore.meta === Meta.loading) {
@@ -46,23 +48,7 @@ const Products: React.FC = () => {
         <h2>Total Products</h2>
         <Counter count={productsStore.products.length} />
       </div>
-      <div className={styles.products__list}>
-        {productsStore.products.map((product) => (
-          <Card
-            key={product.id}
-            image={product.image}
-            category={product.category}
-            title={product.title}
-            to={routes.products.detail.createRoot(product.id)}
-            content={
-              <>
-                <h3>${product.price}</h3>
-                <Rating rate={product.rating?.rate} />
-              </>
-            }
-          />
-        ))}
-      </div>
+      <List list={productsStore.products} />
       <div className={styles.products__pagination}>Pagination</div>
     </div>
   );

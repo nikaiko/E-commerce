@@ -72,19 +72,7 @@ const ProductDetail: React.FC = () => {
           {productDetailStore.relatedProducts
             .filter((item) => item.id !== productDetailStore.product?.id)
             .map((item) => (
-              <Card
-                key={item.id}
-                image={item.image}
-                category={item.category}
-                title={item.title}
-                to={routes.products.detail.createRoot(item.id)}
-                content={
-                  <>
-                    <h3>${item.price}</h3>
-                    <Rating rate={item.rating?.rate} />
-                  </>
-                }
-              />
+              <Card key={item.id} item={item} />
             ))}
         </div>
       </div>

@@ -1,7 +1,6 @@
 import React from "react";
 
 import routes from "@configs/routes";
-import { useQueryParamsStoreInit } from "@store/RootStore/hooks/useQueryParamsStoreInit";
 import { Routes, Route, Navigate } from "react-router-dom";
 
 import MainLayout from "./layouts/MainLayout";
@@ -10,8 +9,6 @@ import ProductDetail from "./pages/ProductDetail";
 import Products from "./pages/Products";
 
 const App: React.FC = () => {
-  useQueryParamsStoreInit();
-
   return (
     <Routes>
       <Route path={routes.main.mask} element={<MainLayout />}>

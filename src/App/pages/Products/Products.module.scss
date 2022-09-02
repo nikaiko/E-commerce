@@ -56,14 +56,4 @@
       }
     }
   }
-
-  &__list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px 29px;
-
-    @media (max-width: 1240px) {
-      gap: 17px 15px;
-    }
-  }
 }
