@@ -67,7 +67,15 @@
     gap: 30px 28px;
 
     @media (max-width: 1240px) {
-      gap: 16px;
+      gap: 14px;
+    }
+  }
+
+  &__pagination {
+    padding-top: 80px;
+    margin: auto;
+    @media (max-width: 1240px) {
+      padding-top: 32px;
     }
   }
 }

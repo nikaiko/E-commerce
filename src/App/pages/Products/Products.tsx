@@ -8,9 +8,11 @@ import Pagination from "@components/Pagination";
 import Search from "@components/Search";
 import ProductsStore from "@store/ProductsStore";
 import { useQueryParamsStoreInit } from "@store/RootStore/hooks/useQueryParamsStoreInit";
+import log from "@utils/log";
 import Meta from "@utils/meta";
 import { useLocalStore } from "@utils/useLocalStore";
 import { observer } from "mobx-react-lite";
+import { useSearchParams } from "react-router-dom";
 
 import s from "./Products.module.scss";
 
@@ -18,6 +20,9 @@ const Products: React.FC = () => {
   useQueryParamsStoreInit();
 
   const productsStore = useLocalStore(() => new ProductsStore());
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [page, setPage] = React.useState(1);
+  const [title, setTitle] = React.useState(searchParams.get("title") || "");
 
   React.useEffect(() => {
     productsStore.getProducts();
@@ -26,6 +31,16 @@ const Products: React.FC = () => {
       productsStore.destroy();
     };
   }, [productsStore]);
+
+  React.useEffect(() => {
+    const params = { page: `${page}`, title };
+    setSearchParams(params);
+  }, [page]);
+
+  const handleClick = () => {
+    const params = { page: "1", title };
+    setSearchParams(params);
+  };
 
   if (productsStore.meta === Meta.loading) {
     return <Loader />;
@@ -41,7 +56,11 @@ const Products: React.FC = () => {
         </p>
       </div>
       <div className={s.products__panel}>
-        <Search />
+        <Search
+          value={title}
+          onChange={(e: any) => setTitle(e.target.value)}
+          onClick={handleClick}
+        />
         <Filter />
       </div>
       <div className={s.products__total}>
@@ -49,7 +68,12 @@ const Products: React.FC = () => {
         <Counter count={productsStore.products.length} />
       </div>
       <List list={productsStore.products} className={s.products__list} />
-      <Pagination className={s.products__pagination} />
+      <Pagination
+        className={s.products__pagination}
+        currentPage={+page}
+        onPageChange={(number) => setPage(number)}
+        totalCount={productsStore.products.length}
+      />
     </div>
   );
 };

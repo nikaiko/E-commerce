@@ -27,6 +27,18 @@ export default class ProductsStore {
       meta: computed,
       getProducts: action.bound,
     });
+
+    reaction(
+      () => {
+        const title = rootStore.query.getParam("title");
+        const page = rootStore.query.getParam("page");
+        return { title, page };
+      },
+      ({ title, page }) => {
+        this.getProducts(title?.toString());
+        log("array products after reaction: ", this.products);
+      }
+    );
   }
 
   async getProducts(query?: string) {
@@ -41,7 +53,6 @@ export default class ProductsStore {
         return;
       }
 
-      log("query ", query);
       this._meta = Meta.success;
       this._products = query
         ? response.data.filter((product) =>
@@ -60,15 +71,18 @@ export default class ProductsStore {
   }
 
   destroy(): void {
-    this._qpReaction();
+    // this._qpReaction();
   }
 
-  private readonly _qpReaction: IReactionDisposer = reaction(
-    () => rootStore.query.getParam("search"),
-    (search) => {
-      log("search value change", search);
-      this.getProducts(search?.toString());
-      log(this._products);
-    }
-  );
+  // private readonly _qpReaction: IReactionDisposer = reaction(
+  //   () => {
+  //     const title = rootStore.query.getParam("title");
+  //     const page = rootStore.query.getParam("page");
+  //     return { title, page };
+  //   },
+  //   ({ title, page }) => {
+  //     this.getProducts(title?.toString());
+  //     log("array products after reaction: ", this.products);
+  //   }
+  // );
 }

@@ -1,3 +1,4 @@
+import log from "@utils/log";
 import * as Router from "react-router-dom";
 
 import rootStore from "../instance";

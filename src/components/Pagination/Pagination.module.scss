@@ -1,0 +1,97 @@
+@import "@styles/variables.scss";
+
+.pagination {
+  display: flex;
+  @include text(500, 18px, 180%);
+  min-height: 42px;
+
+  @media (max-width: 1240px) {
+    font-size: 14px;
+    min-height: 32px;
+  }
+
+  &__arrow {
+    min-width: 38px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @media (max-width: 1240px) {
+      min-width: 32px;
+    }
+
+    .arrow {
+      &::before {
+        position: relative;
+        content: "";
+        display: inline-block;
+        width: 0.8em;
+        height: 0.8em;
+        border-right: 0.12em solid $text-color;
+        border-top: 0.12em solid $text-color;
+      }
+
+      &-left {
+        transform: rotate(-135deg);
+      }
+
+      &-right {
+        transform: rotate(45deg);
+      }
+    }
+
+    &.disabled {
+      pointer-events: none;
+
+      .arrow::before {
+        border-right: 0.12em solid $paragraph-color;
+        border-top: 0.12em solid $paragraph-color;
+      }
+
+      &:hover {
+        background-color: transparent;
+        cursor: default;
+      }
+    }
+
+    &:hover {
+      opacity: 0.7;
+      cursor: pointer;
+    }
+  }
+
+  &__item {
+    min-width: 38px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1.5px solid $color-placeholder;
+
+    @media (max-width: 1240px) {
+      min-width: 32px;
+    }
+
+    &.dots {
+      border: none;
+
+      &:hover {
+        background-color: transparent;
+        cursor: default;
+      }
+    }
+
+    &:hover {
+      border: 1.5px solid $smaltblue;
+      opacity: 0.7;
+      cursor: pointer;
+    }
+
+    &.selected {
+      background-color: $smaltblue;
+      border: none;
+      color: $color-screen;
+    }
+  }
+}

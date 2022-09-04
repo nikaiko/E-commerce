@@ -7,7 +7,7 @@ import Star from "./components/Star";
 import styles from "./Rating.module.scss";
 
 type RatingProps = {
-  rate?: number;
+  rate: number | undefined;
   count?: number;
   className?: string;
 };
@@ -17,8 +17,8 @@ const Rating: React.FC<RatingProps> = ({ rate = 0, count, className }) => {
     <div className={className}>
       {count ? (
         <div className={styles.rating}>
-          {range(5).map((id) => (
-            <Star key={id} mode={++id <= rate} />
+          {range(1, 5).map((idx) => (
+            <Star key={idx} mode={idx <= rate} />
           ))}
           <h5>{rate}</h5>
           <Counter count={count} />

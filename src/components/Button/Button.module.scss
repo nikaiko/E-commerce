@@ -1,7 +1,7 @@
 @import "@styles/variables.scss";
 
 .button {
-  @include text(700, 18px, 130%, $color-controller-bg);
+  @include text(700, 18px, 130%, $color-screen);
   width: 138px;
   height: 54px;
   text-align: center;
@@ -24,9 +24,9 @@
     }
 
     &-secondary {
-      background-color: $color-controller-bg;
+      background-color: $color-screen;
       color: $text-color;
-      border: 2px solid #f3f3f3;
+      border: 2px solid $color-line;
 
       &:hover {
         opacity: 0.7;
@@ -45,6 +45,6 @@
 }
 
 .loader {
-  border-color: $color-controller-bg;
+  border-color: $color-screen;
   border-bottom-color: transparent;
 }

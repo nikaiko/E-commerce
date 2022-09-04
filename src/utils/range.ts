@@ -1,5 +1,7 @@
-const range = (length: number) => {
-  return Array.from({ length: length }, (_, i) => i);
+const range = (start: number, end: number): number[] => {
+  let length = end - start + 1;
+
+  return Array.from({ length }, (_, idx) => idx + start);
 };
 
 export default range;
