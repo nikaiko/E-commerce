@@ -5,12 +5,18 @@ import log from "@utils/log";
 import axios from "axios";
 
 export default class ApiStore {
-  static async fetchAllProducts(): Promise<ApiResponse<ProductModel[]>> {
+  static async fetchProducts(
+    title?: string
+  ): Promise<ApiResponse<ProductModel[]>> {
     try {
       const response = await axios(apiUrls.products.all);
       return {
         isError: false,
-        data: response.data,
+        data: title
+          ? response.data.filter((item: ProductModel) =>
+              item.title.toLowerCase().includes(title.toLowerCase())
+            )
+          : response.data,
       };
     } catch (e) {
       log(e);

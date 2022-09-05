@@ -21,35 +21,21 @@ const Products: React.FC = () => {
 
   const productsStore = useLocalStore(() => new ProductsStore());
   const [searchParams, setSearchParams] = useSearchParams({});
-  const [page, setPage] = React.useState("1");
-  const [title, setTitle] = React.useState("");
+  const [page, setPage] = React.useState(searchParams.get("page") || "1");
+  const [title, setTitle] = React.useState(searchParams.get("title") || "");
 
   React.useEffect(() => {
-    productsStore.getProducts();
-
-    return () => {
-      productsStore.destroy();
-    };
+    productsStore.getProducts(title, +page);
   }, [productsStore]);
 
   React.useEffect(() => {
-    let params;
-    if (title) {
-      params = { page, title };
-    } else {
-      params = { page };
-    }
-    setSearchParams(params);
+    setSearchParams(title ? { title, page } : { page });
   }, [page]);
 
-  const handleClick = () => {
-    let params;
-    if (title) {
-      params = { page: "1", title };
-    } else {
-      params = { page };
-    }
-    setSearchParams(params);
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    setPage("1");
+    setSearchParams(title ? { title, page } : { page });
   };
 
   if (productsStore.meta === Meta.loading) {
@@ -69,20 +55,21 @@ const Products: React.FC = () => {
         <Search
           value={title}
           onChange={(e: any) => setTitle(e.target.value)}
-          onClick={handleClick}
+          onSubmit={handleSubmit}
         />
         <Filter />
       </div>
       <div className={s.products__total}>
         <h2 className={s.total__title}>Total Products</h2>
-        <Counter count={productsStore.products.length} />
+        <Counter count={productsStore.totalCount} />
       </div>
       <List list={productsStore.products} className={s.products__list} />
       <Pagination
         className={s.products__pagination}
         currentPage={+page}
         onPageChange={(number) => setPage(`${number}`)}
-        totalCount={productsStore.products.length}
+        pageSize={productsStore.pageSize}
+        totalCount={productsStore.totalCount}
       />
     </div>
   );

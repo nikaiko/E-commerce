@@ -63,9 +63,7 @@ const ProductDetail: React.FC = () => {
       <div className={s.relatedItems}>
         <h5>Related Items</h5>
         <List
-          list={productDetailStore.relatedProducts.filter(
-            (product) => product.id !== productDetailStore.currentProduct?.id
-          )}
+          list={productDetailStore.relatedProducts}
           className={s.relatedItems__list}
         />
       </div>

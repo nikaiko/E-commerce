@@ -9,7 +9,7 @@ type PaginationProps = {
   onPageChange: (page: number) => void;
   totalCount: number;
   currentPage: number;
-  pageSize?: number;
+  pageSize: number;
   siblingCount?: number;
   className?: string;
 };
@@ -18,7 +18,7 @@ const Pagination: React.FC<PaginationProps> = ({
   onPageChange,
   totalCount,
   currentPage,
-  pageSize = 6,
+  pageSize,
   siblingCount = 1,
   className = "",
 }) => {

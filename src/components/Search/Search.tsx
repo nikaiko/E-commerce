@@ -8,22 +8,22 @@ import s from "./Search.module.scss";
 type SearchProps = {
   value: string;
   onChange: (e: any) => void;
-  onClick?: () => void;
+  onSubmit?: (e: any) => void;
 };
 
-const Search: React.FC<SearchProps> = ({ value, onChange, onClick }) => {
+const Search: React.FC<SearchProps> = ({ value, onChange, onSubmit }) => {
   return (
-    <div className={s.search}>
+    <form className={s.search} onSubmit={onSubmit}>
       <Input
         value={value}
         onChange={onChange}
         className={s.search__input}
-        placeholder="Search property"
+        placeholder="Search title"
       />
-      <Button className={s.search__button} onClick={onClick}>
+      <Button className={s.search__button} type="submit">
         Find
       </Button>
-    </div>
+    </form>
   );
 };
 

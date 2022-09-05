@@ -1,5 +1,6 @@
 import ApiStore from "@store/ApiStore";
 import ProductModel from "@store/models/ProductModel";
+import log from "@utils/log";
 import Meta from "@utils/meta";
 import {
   action,
@@ -33,7 +34,7 @@ export default class ProductDetailStore {
     this._currentProduct = null;
 
     const respProduct = await ApiStore.fetchSingleProduct(id);
-    const respRelated = await ApiStore.fetchProductsFromCategory(
+    const respProductsFromCategory = await ApiStore.fetchProductsFromCategory(
       respProduct.data.category
     );
 
@@ -44,7 +45,9 @@ export default class ProductDetailStore {
       }
       this._meta = Meta.success;
       this._currentProduct = respProduct.data;
-      this._relatedProducts = respRelated.data;
+      this._relatedProducts = respProductsFromCategory.data.filter(
+        (product: ProductModel) => product.id !== respProduct.data.id
+      );
     });
   }
 

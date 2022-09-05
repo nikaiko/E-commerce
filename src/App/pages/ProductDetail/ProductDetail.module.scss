@@ -107,10 +107,10 @@
     padding-top: 30px;
     display: flex;
     flex-wrap: wrap;
-    gap: 28px;
+    gap: 26px 28px;
 
     @media (max-width: 1240px) {
-      gap: 28px 16px;
+      gap: 26px 14px;
     }
   }
 }
