@@ -6,7 +6,6 @@ import Meta from "@utils/meta";
 import {
   action,
   computed,
-  IReactionDisposer,
   makeObservable,
   observable,
   reaction,
@@ -73,16 +72,4 @@ export default class ProductsStore {
   destroy(): void {
     // this._qpReaction();
   }
-
-  // private readonly _qpReaction: IReactionDisposer = reaction(
-  //   () => {
-  //     const title = rootStore.query.getParam("title");
-  //     const page = rootStore.query.getParam("page");
-  //     return { title, page };
-  //   },
-  //   ({ title, page }) => {
-  //     this.getProducts(title?.toString());
-  //     log("array products after reaction: ", this.products);
-  //   }
-  // );
 }

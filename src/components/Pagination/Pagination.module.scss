@@ -41,7 +41,7 @@
       }
     }
 
-    &.disabled {
+    &_disabled {
       pointer-events: none;
 
       .arrow::before {
@@ -88,7 +88,7 @@
       cursor: pointer;
     }
 
-    &.selected {
+    &_selected {
       background-color: $smaltblue;
       border: none;
       color: $color-screen;

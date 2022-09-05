@@ -1,7 +1,6 @@
 import React from "react";
 
 import cn from "classnames";
-import { useSearchParams } from "react-router-dom";
 
 import { usePagination, DOTS } from "./hooks/usePagination";
 import s from "./Pagination.module.scss";
@@ -18,9 +17,9 @@ type PaginationProps = {
 const Pagination: React.FC<PaginationProps> = ({
   onPageChange,
   totalCount,
-  siblingCount = 1,
   currentPage,
   pageSize = 6,
+  siblingCount = 1,
   className = "",
 }) => {
   const paginationRange = usePagination(
@@ -47,7 +46,10 @@ const Pagination: React.FC<PaginationProps> = ({
   return (
     <ul className={cn(s.pagination, className)}>
       <li
-        className={cn(s.pagination__arrow, currentPage === 1 && s.disabled)}
+        className={cn(
+          s.pagination__arrow,
+          currentPage === 1 && s.pagination__arrow_disabled
+        )}
         onClick={onPrev}
       >
         <div className={cn(s.arrow, s["arrow-left"])} />
@@ -63,7 +65,7 @@ const Pagination: React.FC<PaginationProps> = ({
             key={pageNumber}
             className={cn(
               s.pagination__item,
-              pageNumber === currentPage && s.selected
+              pageNumber === currentPage && s.pagination__item_selected
             )}
             onClick={() => onPageChange(+pageNumber)}
           >
@@ -75,7 +77,7 @@ const Pagination: React.FC<PaginationProps> = ({
       <li
         className={cn(
           s.pagination__arrow,
-          currentPage === lastPage && s.disabled
+          currentPage === lastPage && s.pagination__arrow_disabled
         )}
         onClick={onNext}
       >

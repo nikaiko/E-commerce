@@ -20,9 +20,9 @@ const Products: React.FC = () => {
   useQueryParamsStoreInit();
 
   const productsStore = useLocalStore(() => new ProductsStore());
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [page, setPage] = React.useState(1);
-  const [title, setTitle] = React.useState(searchParams.get("title") || "");
+  const [searchParams, setSearchParams] = useSearchParams({});
+  const [page, setPage] = React.useState("1");
+  const [title, setTitle] = React.useState("");
 
   React.useEffect(() => {
     productsStore.getProducts();
@@ -33,12 +33,22 @@ const Products: React.FC = () => {
   }, [productsStore]);
 
   React.useEffect(() => {
-    const params = { page: `${page}`, title };
+    let params;
+    if (title) {
+      params = { page, title };
+    } else {
+      params = { page };
+    }
     setSearchParams(params);
   }, [page]);
 
   const handleClick = () => {
-    const params = { page: "1", title };
+    let params;
+    if (title) {
+      params = { page: "1", title };
+    } else {
+      params = { page };
+    }
     setSearchParams(params);
   };
 
@@ -71,7 +81,7 @@ const Products: React.FC = () => {
       <Pagination
         className={s.products__pagination}
         currentPage={+page}
-        onPageChange={(number) => setPage(number)}
+        onPageChange={(number) => setPage(`${number}`)}
         totalCount={productsStore.products.length}
       />
     </div>
