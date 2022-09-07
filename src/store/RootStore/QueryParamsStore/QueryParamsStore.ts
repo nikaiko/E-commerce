@@ -14,10 +14,8 @@ export default class QueryParamsStore {
     });
   }
 
-  getParam(
-    key: string
-  ): undefined | string | string[] | qs.ParsedQs | qs.ParsedQs[] {
-    return this._params[key];
+  getParam(key: string): string {
+    return qs.stringify(this._params[key]);
   }
 
   setSearch(search: string) {

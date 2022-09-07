@@ -49,9 +49,7 @@ export default class ProductsStore {
         return { title, page };
       },
       ({ title, page }) => {
-        page
-          ? this.getProducts(title?.toString(), +page)
-          : this.getProducts(title?.toString());
+        page ? this.getProducts(title, +page) : this.getProducts(title);
       }
     );
   }
