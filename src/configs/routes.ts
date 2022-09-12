@@ -14,6 +14,31 @@ const routes = {
     },
   },
 
+  services: {
+    createRoot: (): string => "/services",
+    mask: "/services",
+  },
+
+  article: {
+    createRoot: (): string => "/article",
+    mask: "/article",
+  },
+
+  about: {
+    createRoot: (): string => "/about",
+    mask: "/about",
+  },
+
+  profile: {
+    createRoot: (): string => "/profile",
+    mask: "/profile",
+  },
+
+  basket: {
+    createRoot: (): string => "/basket",
+    mask: "/basket",
+  },
+
   other: {
     createRoot: (): string => "*",
     mask: "*",

@@ -1,8 +1,9 @@
 const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+
 const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const TsCheckerPlugin = require("fork-ts-checker-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const buildPath = path.resolve(__dirname, "dist");
 const srcPath = path.resolve(__dirname, "src");
@@ -43,6 +44,7 @@ module.exports = {
   output: {
     path: buildPath,
     filename: "bundle.js",
+    publicPath: "/",
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -96,5 +98,6 @@ module.exports = {
     host: "127.0.0.1",
     port: 9000,
     hot: true,
+    historyApiFallback: true,
   },
 };

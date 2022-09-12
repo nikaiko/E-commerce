@@ -1,5 +1,5 @@
+import ProductModel from "@models/ProductModel";
 import ApiStore from "@store/ApiStore";
-import ProductModel from "@store/models/ProductModel";
 import rootStore from "@store/RootStore";
 import log from "@utils/log";
 import Meta from "@utils/meta";
@@ -49,7 +49,9 @@ export default class ProductsStore {
         return { title, page };
       },
       ({ title, page }) => {
-        page ? this.getProducts(title, +page) : this.getProducts(title);
+        page
+          ? this.getProducts(title?.toString(), +page)
+          : this.getProducts(title?.toString());
       }
     );
   }

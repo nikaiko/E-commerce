@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development npx webpack serve --mode=development",
     "build": "cross-env NODE_ENV=production npx webpack --mode=production",
-    "ts-check": "tsc --skipLibCheck --noEmit --project tsconfig.json"
+    "ts-check": "tsc --skipLibCheck --noEmit --project tsconfig.json",
+    "lint": "eslint \"./src/**/*.{js,jsx,ts,tsx}\"",
+    "lint:fix": "eslint \"./src/**/*.{js,jsx,ts,tsx}\" --fix"
   },
   "repository": {
     "type": "git",
@@ -33,10 +35,15 @@
     "babel-loader": "^8.2.5",
     "babel-preset-mobx": "^2.0.0",
     "css-loader": "^6.7.1",
+    "eslint": "^8.23.1",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-react-app": "^7.0.1",
+    "eslint-plugin-prettier": "^4.2.1",
     "fork-ts-checker-webpack-plugin": "^7.2.13",
     "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.6.1",
     "postcss-loader": "^7.0.1",
+    "prettier": "^2.7.1",
     "react-refresh": "^0.14.0",
     "sass": "^1.54.9",
     "sass-loader": "^13.0.2",
@@ -50,9 +57,14 @@
     "last 2 chrome versions"
   ],
   "dependencies": {
+    "axios": "^0.27.2",
+    "classnames": "^2.3.1",
     "cross-env": "^7.0.3",
-    "reacr": "^1.0.0",
+    "mobx": "^6.6.2",
+    "mobx-react-lite": "^3.4.0",
+    "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.3.0",
     "regenerator-runtime": "^0.13.9"
   }
 }

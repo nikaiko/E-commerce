@@ -1,7 +1,7 @@
 import React from "react";
 
 import routes from "@configs/routes";
-import { Routes, Route, Navigate, BrowserRouter } from "react-router-dom";
+import * as Router from "react-router-dom";
 
 import MainLayout from "./layouts/MainLayout";
 import MainPage from "./pages/MainPage";
@@ -10,22 +10,22 @@ import Products from "./pages/Products";
 
 const App: React.FC = () => {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path={routes.main.mask} element={<MainLayout />}>
-          <Route index element={<MainPage />} />
-          <Route path={routes.products.mask} element={<Products />} />
-          <Route
+    <Router.BrowserRouter>
+      <Router.Routes>
+        <Router.Route path={routes.main.mask} element={<MainLayout />}>
+          <Router.Route index element={<MainPage />} />
+          <Router.Route path={routes.products.mask} element={<Products />} />
+          <Router.Route
             path={routes.products.detail.mask}
             element={<ProductDetail />}
           />
-          <Route
+          <Router.Route
             path={routes.other.mask}
-            element={<Navigate to={routes.main.mask} replace />}
+            element={<Router.Navigate to={routes.main.mask} replace />}
           />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+        </Router.Route>
+      </Router.Routes>
+    </Router.BrowserRouter>
   );
 };
 

@@ -1,7 +1,7 @@
 import React from "react";
 
 import Card from "@components/Card";
-import ProductModel from "@store/models/ProductModel";
+import ProductModel from "@models/ProductModel";
 
 type ListProps = {
   list: ProductModel[];

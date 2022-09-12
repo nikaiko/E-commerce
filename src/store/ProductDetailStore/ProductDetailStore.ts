@@ -1,5 +1,5 @@
+import ProductModel from "@models/ProductModel";
 import ApiStore from "@store/ApiStore";
-import ProductModel from "@store/models/ProductModel";
 import log from "@utils/log";
 import Meta from "@utils/meta";
 import {

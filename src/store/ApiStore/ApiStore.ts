@@ -1,5 +1,5 @@
 import apiUrls from "@configs/apiUrls";
-import ProductModel from "@store/models/ProductModel";
+import ProductModel from "@models/ProductModel";
 import ApiResponse from "@utils/apiTypes";
 import log from "@utils/log";
 import axios from "axios";

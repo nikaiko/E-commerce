@@ -2,7 +2,7 @@ import React from "react";
 
 import Rating from "@components/Rating";
 import routes from "@configs/routes";
-import ProductModel from "@store/models/ProductModel";
+import ProductModel from "@models/ProductModel";
 import { useNavigate } from "react-router-dom";
 
 import s from "./Card.module.scss";
