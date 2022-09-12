@@ -1,0 +1,11 @@
+@import "@styles/variables.scss";
+
+.star {
+  &_on {
+    color: $color-star-on;
+  }
+
+  &_off {
+    color: $color-star-off;
+  }
+}

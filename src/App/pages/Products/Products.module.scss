@@ -1,0 +1,81 @@
+@import "@styles/variables.scss";
+
+.products {
+  display: flex;
+  flex-direction: column;
+
+  &__head {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 80px;
+    gap: 20px;
+
+    .head {
+      &__title {
+        @include text(700, 64px, 130%);
+        text-align: center;
+
+        @media (max-width: 1240px) {
+          font-size: 26px;
+        }
+      }
+
+      &__info {
+        @include text(500, 18px, 180%, $paragraph-color);
+        text-align: center;
+        width: 600px;
+
+        @media (max-width: 1240px) {
+          font-size: 14px;
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  &__panel {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  &__total {
+    padding: 50px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    @media (max-width: 1240px) {
+      gap: 8px;
+    }
+
+    .total {
+      &__title {
+        @include text(700, 44px, 130%);
+
+        @media (max-width: 1240px) {
+          font-size: 18px;
+        }
+      }
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px 28px;
+
+    @media (max-width: 1240px) {
+      gap: 14px;
+    }
+  }
+
+  &__pagination {
+    padding-top: 80px;
+    margin: auto;
+    @media (max-width: 1240px) {
+      padding-top: 32px;
+    }
+  }
+}

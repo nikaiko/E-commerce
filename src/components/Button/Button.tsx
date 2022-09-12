@@ -1,20 +1,19 @@
 import React from "react";
 
 import WithLoader from "@components/WithLoader";
-import classNames from "classnames";
+import cn from "classnames";
 
-import styles from "./Button.module.scss";
+import s from "./Button.module.scss";
 
 export enum ButtonColor {
   primary = "primary",
   secondary = "secondary",
 }
 
-export type ButtonProps = React.PropsWithChildren<{
+export type ButtonProps = {
   loading?: boolean;
   color?: ButtonColor;
-}> &
-  React.ButtonHTMLAttributes<HTMLButtonElement>;
+} & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 const Button: React.FC<ButtonProps> = ({
   loading = false,
@@ -25,23 +24,18 @@ const Button: React.FC<ButtonProps> = ({
   ...rest
 }) => {
   const isBlocked = loading || disabled;
-  const isPrimary = color === ButtonColor.primary;
 
   return (
     <button
-      className={classNames(
-        styles.button,
-        isBlocked
-          ? styles.button_disabled
-          : isPrimary
-          ? styles.button_primary
-          : styles.button_secondary,
+      className={cn(
+        s.button,
+        isBlocked ? s.button_disabled : s[`button_color-${color}`],
         className
       )}
       disabled={isBlocked}
       {...rest}
     >
-      <WithLoader loading={loading} className={styles.loader}>
+      <WithLoader loading={loading} className={s.loader}>
         {children}
       </WithLoader>
     </button>

@@ -3,21 +3,27 @@ import React from "react";
 import Button from "@components/Button";
 import Input from "@components/Input";
 
-import styles from "./Search.module.scss";
+import s from "./Search.module.scss";
 
-const Search = () => {
-  const [search, setSearch] = React.useState("");
+type SearchProps = {
+  value: string;
+  onChange: (e: any) => void;
+  onSubmit?: (e: any) => void;
+};
 
+const Search: React.FC<SearchProps> = ({ value, onChange, onSubmit }) => {
   return (
-    <div className={styles.search}>
+    <form className={s.search} onSubmit={onSubmit}>
       <Input
-        value={search}
-        onChange={setSearch}
-        className={styles.search__input}
-        placeholder="Search property"
+        value={value}
+        onChange={onChange}
+        className={s.search__input}
+        placeholder="Search title"
       />
-      <Button className={styles.search__button} />
-    </div>
+      <Button className={s.search__button} type="submit">
+        Find
+      </Button>
+    </form>
   );
 };
 

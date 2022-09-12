@@ -10,4 +10,4 @@ const Counter: React.FC<CounterProps> = ({ count }) => {
   return <span className={styles.counter}>{count}</span>;
 };
 
-export default Counter;
+export default React.memo(Counter);

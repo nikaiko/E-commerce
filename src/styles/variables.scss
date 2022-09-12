@@ -1,6 +1,11 @@
 $smaltblue: #518581;
 $text-color: #151411;
 $paragraph-color: #afadb5;
+$color-star-on: #ffb800;
+$color-star-off: #ccc;
+$color-screen: #ffffff;
+$color-placeholder: #f9f9f9;
+$color-line: #f3f3f3;
 
 @mixin container($p-top: 0) {
   padding: $p-top calc(50% - 620px) 0;

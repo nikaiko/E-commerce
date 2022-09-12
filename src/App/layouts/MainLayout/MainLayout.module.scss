@@ -1,0 +1,14 @@
+@import "@styles/variables.scss";
+
+.wrapper {
+  height: 100%;
+}
+
+.content {
+  @include container(100px);
+  padding-bottom: 54px;
+
+  @media (max-width: 1240px) {
+    padding-bottom: 38px;
+  }
+}
