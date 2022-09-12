@@ -28,8 +28,8 @@
         display: inline-block;
         width: 0.8em;
         height: 0.8em;
-        border-right: 0.12em solid $text-color;
-        border-top: 0.12em solid $text-color;
+        border-right: 0.12em solid $color-text;
+        border-top: 0.12em solid $color-text;
       }
 
       &-left {
@@ -45,8 +45,8 @@
       pointer-events: none;
 
       .arrow::before {
-        border-right: 0.12em solid $paragraph-color;
-        border-top: 0.12em solid $paragraph-color;
+        border-right: 0.12em solid $color-paragraph;
+        border-top: 0.12em solid $color-paragraph;
       }
 
       &:hover {
@@ -83,13 +83,13 @@
     }
 
     &:hover {
-      border: 1.5px solid $smaltblue;
+      border: 1.5px solid $color-main;
       opacity: 0.7;
       cursor: pointer;
     }
 
     &_selected {
-      background-color: $smaltblue;
+      background-color: $color-main;
       border: none;
       color: $color-screen;
     }

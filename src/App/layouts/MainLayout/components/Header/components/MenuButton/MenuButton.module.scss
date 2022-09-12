@@ -2,26 +2,23 @@
 
 .menu,
 .menu__popup {
-  filter: drop-shadow(0px 4px 120px rgba(175, 173, 181, 0.15));
-  box-shadow: 0px 4px 120px rgba(175, 173, 181, 0.15);
+  filter: drop-shadow(0px 4px 120px $color-box-shadow);
+  box-shadow: 0px 4px 120px $color-box-shadow;
 }
 
 .menu {
   position: relative;
-  display: none;
 
-  @media (max-width: 1240px) {
-    display: block;
+  @media (min-width: 1240px) {
+    display: none;
   }
 
   &__popup {
     position: absolute;
-    top: 25px;
-    right: 0;
+    top: 24px;
   }
 
-  &__link,
-  &__link_active {
+  &__link {
     width: 100px;
     height: 38px;
     @include text(400, 14px, 16px);
@@ -29,22 +26,21 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
+    &_active {
+      color: $color-main;
+    }
   }
 
-  &__link_active {
-    color: $smaltblue;
-  }
-
-  &__button,
-  &__button_open {
-    height: 21px;
+  &__button {
+    height: 20px;
+    width: 20px;
     position: relative;
-    width: 22.5px;
 
     .line {
       width: 100%;
       height: 2px;
-      background: $text-color;
+      background: $color-text;
       transition: 0.3s all ease;
       border-radius: 2px;
 
@@ -67,21 +63,21 @@
         bottom: 0;
       }
     }
-  }
 
-  &__button_open {
-    .line {
-      &__top {
-        transform: translateY(8px) rotate(45deg);
-        transition: 0.3s all ease;
-      }
-      &__mid {
-        opacity: 0;
-        transition: 0.3s all ease;
-      }
-      &__bot {
-        transform: translateY(-11px) rotate(-45deg);
-        transition: 0.3s all ease;
+    &_open {
+      .line {
+        &__top {
+          transform: translateY(8px) rotate(45deg);
+          transition: 0.3s all ease;
+        }
+        &__mid {
+          opacity: 0;
+          transition: 0.3s all ease;
+        }
+        &__bot {
+          transform: translateY(-10px) rotate(-45deg);
+          transition: 0.3s all ease;
+        }
       }
     }
   }

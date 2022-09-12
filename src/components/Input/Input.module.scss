@@ -1,10 +1,10 @@
 @import "@styles/variables.scss";
 
 .input {
-  @include text(500, 18px, 180%, $paragraph-color);
+  @include text(500, 18px, 180%, $color-paragraph);
 
-  filter: drop-shadow(0px 4px 120px rgba(175, 173, 181, 0.15));
-  box-shadow: 0px 4px 120px rgba(175, 173, 181, 0.15);
+  filter: drop-shadow(0px 4px 120px $color-box-shadow);
+  box-shadow: 0px 4px 120px $color-box-shadow;
 
   width: 300px;
   height: 84px;
@@ -15,11 +15,11 @@
   @media (max-width: 1240px) {
     font-size: 14px;
     height: 54px;
-    box-shadow: 0px 4px 80px rgba(175, 173, 181, 0.2);
+    box-shadow: 0px 4px 80px $color-box-shadow;
   }
 
   &:focus {
-    border: 1px solid $smaltblue;
+    border: 1px solid $color-main;
   }
 
   &_disabled {
