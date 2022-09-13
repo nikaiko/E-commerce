@@ -7,7 +7,6 @@ import Loader from "@components/Loader";
 import Rating from "@components/Rating";
 import ReadMoreLess from "@components/ReadMoreLess";
 import ProductDetailStore from "@store/ProductDetailStore";
-import log from "@utils/log";
 import Meta from "@utils/meta";
 import useLocalStore from "@utils/useLocalStore";
 import { observer } from "mobx-react-lite";

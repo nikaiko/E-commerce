@@ -7,7 +7,6 @@ import Pagination from "@components/Pagination";
 import Search from "@components/Search";
 import ProductsStore from "@store/ProductsStore";
 import { useQueryParamsStoreInit } from "@store/RootStore/hooks/useQueryParamsStoreInit";
-import log from "@utils/log";
 import Meta from "@utils/meta";
 import useLocalStore from "@utils/useLocalStore";
 import { observer } from "mobx-react-lite";

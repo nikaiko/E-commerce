@@ -1,7 +1,6 @@
 import apiUrls from "@configs/apiUrls";
 import ProductModel from "@models/ProductModel";
 import ApiResponse from "@utils/apiTypes";
-import log from "@utils/log";
 import axios from "axios";
 
 export default class ApiStore {
@@ -19,7 +18,6 @@ export default class ApiStore {
           : response.data,
       };
     } catch (e) {
-      log(e);
       return {
         isError: true,
         data: null,
@@ -37,7 +35,6 @@ export default class ApiStore {
         data: response.data,
       };
     } catch (e) {
-      log(e);
       return {
         isError: true,
         data: null,
@@ -55,7 +52,6 @@ export default class ApiStore {
         data: response.data,
       };
     } catch (e) {
-      log(e);
       return {
         isError: true,
         data: null,

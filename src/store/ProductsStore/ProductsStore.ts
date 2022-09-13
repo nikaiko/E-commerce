@@ -1,7 +1,6 @@
 import ProductModel from "@models/ProductModel";
 import ApiStore from "@store/ApiStore";
 import rootStore from "@store/RootStore";
-import log from "@utils/log";
 import Meta from "@utils/meta";
 import {
   action,
@@ -44,7 +43,6 @@ export default class ProductsStore {
       () => {
         const title = rootStore.query.getParam("title");
         const page = rootStore.query.getParam("page");
-        log("title: ", title, " page: ", page);
 
         return { title, page };
       },
