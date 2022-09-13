@@ -1,6 +1,6 @@
 import React from "react";
 
-import classNames from "classnames";
+import cn from "classnames";
 import "./MultiDropdown.scss";
 
 export type Option = {
@@ -16,7 +16,7 @@ export type MultiDropdownProps = {
   pluralizeOptions: (value: Option[]) => string;
 };
 
-export const MultiDropdown: React.FC<MultiDropdownProps> = ({
+const MultiDropdown: React.FC<MultiDropdownProps> = ({
   options,
   value,
   onChange,
@@ -49,9 +49,9 @@ export const MultiDropdown: React.FC<MultiDropdownProps> = ({
       <button
         onClick={() => setOpen(!open)}
         disabled={disabled}
-        className={classNames(
+        className={cn(
           "dropdown__button",
-          `${disabled ? "dropdown__button_disabled" : ""}`
+          disabled && "dropdown__button_disabled"
         )}
       >
         {title}
@@ -62,9 +62,9 @@ export const MultiDropdown: React.FC<MultiDropdownProps> = ({
             <li
               key={option.key}
               onClick={() => handleClick(option)}
-              className={classNames(
+              className={cn(
                 "dropdown__option",
-                `${isSelected(option) ? "dropdown__option_active" : ""}`
+                isSelected(option) && "dropdown__option_active"
               )}
             >
               {option.value}
@@ -75,3 +75,5 @@ export const MultiDropdown: React.FC<MultiDropdownProps> = ({
     </div>
   );
 };
+
+export default MultiDropdown;

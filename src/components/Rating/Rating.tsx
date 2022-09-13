@@ -4,27 +4,30 @@ import Counter from "@components/Counter";
 import range from "@utils/range";
 
 import Star from "./components/Star";
-import styles from "./Rating.module.scss";
+import s from "./Rating.module.scss";
 
 type RatingProps = {
-  rate: number | undefined;
+  rate?: number;
   count?: number;
   className?: string;
 };
 
 const Rating: React.FC<RatingProps> = ({ rate = 0, count, className }) => {
+  const stars = React.useMemo(
+    () => range(1, 5).map((idx) => <Star key={idx} mode={idx <= rate} />),
+    [rate]
+  );
+
   return (
     <div className={className}>
       {count ? (
-        <div className={styles.rating}>
-          {range(1, 5).map((idx) => (
-            <Star key={idx} mode={idx <= rate} />
-          ))}
+        <div className={s.rating}>
+          {stars}
           <h5>{rate}</h5>
           <Counter count={count} />
         </div>
       ) : (
-        <div className={styles.rating}>
+        <div className={s.rating}>
           <Star />
           <h3>{rate}</h3>
         </div>

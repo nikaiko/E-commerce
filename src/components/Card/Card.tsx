@@ -11,25 +11,22 @@ export type CardProps = {
   item: ProductModel;
 };
 
-const Card: React.FC<CardProps> = ({
-  item: { id, image, category, title, price, rating },
-  ...rest
-}) => {
+const Card: React.FC<CardProps> = ({ item, ...rest }) => {
   const navigate = useNavigate();
 
+  const handleClick = React.useCallback(() => {
+    navigate(routes.products.detail.createRoot(item?.id));
+  }, []);
+
   return (
-    <div
-      className={s.card}
-      onClick={() => navigate(routes.products.detail.createRoot(id))}
-      {...rest}
-    >
-      <img src={image} alt={image} className={s.card__image} />
+    <div className={s.card} onClick={handleClick} {...rest}>
+      <img src={item?.image} alt="product-card" className={s.card__image} />
       <div className={s.card__description}>
-        <h5 className={s.card__category}>{category}</h5>
-        <h3 className={s.card__title}>{title}</h3>
+        <h5 className={s.card__category}>{item?.category}</h5>
+        <h3 className={s.card__title}>{item?.title}</h3>
         <div className={s.card__content}>
-          <h3>${price}</h3>
-          <Rating rate={rating?.rate} />
+          <h3>${item?.price}</h3>
+          <Rating rate={item?.rating?.rate} />
         </div>
       </div>
     </div>

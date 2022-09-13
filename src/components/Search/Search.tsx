@@ -7,11 +7,17 @@ import s from "./Search.module.scss";
 
 type SearchProps = {
   value: string;
-  onChange: (e: any) => void;
-  onSubmit?: (e: any) => void;
+  onChange: React.ChangeEventHandler<HTMLInputElement>;
+  onSubmit: React.ChangeEventHandler<HTMLFormElement>;
+  loading?: boolean;
 };
 
-const Search: React.FC<SearchProps> = ({ value, onChange, onSubmit }) => {
+const Search: React.FC<SearchProps> = ({
+  value,
+  onChange,
+  onSubmit,
+  loading = false,
+}) => {
   return (
     <form className={s.search} onSubmit={onSubmit}>
       <Input
@@ -19,8 +25,9 @@ const Search: React.FC<SearchProps> = ({ value, onChange, onSubmit }) => {
         onChange={onChange}
         className={s.search__input}
         placeholder="Search title"
+        loading={loading}
       />
-      <Button className={s.search__button} type="submit">
+      <Button className={s.search__button} type="submit" loading={loading}>
         Find
       </Button>
     </form>

@@ -5,7 +5,7 @@ import classNames from "classnames";
 import styles from "./ReadMoreLess.module.scss";
 
 type ReadMoreLessProps = {
-  text: string | undefined;
+  text?: string;
   limit?: number;
   className?: string;
 };

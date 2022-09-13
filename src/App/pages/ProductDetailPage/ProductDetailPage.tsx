@@ -9,7 +9,7 @@ import ReadMoreLess from "@components/ReadMoreLess";
 import ProductDetailStore from "@store/ProductDetailStore";
 import log from "@utils/log";
 import Meta from "@utils/meta";
-import { useLocalStore } from "@utils/useLocalStore";
+import useLocalStore from "@utils/useLocalStore";
 import { observer } from "mobx-react-lite";
 import { useParams } from "react-router-dom";
 
@@ -32,7 +32,7 @@ const ProductDetailPage: React.FC = () => {
       <div className={s.product}>
         <img
           src={productDetailStore.currentProduct?.image}
-          alt={productDetailStore.currentProduct?.image}
+          alt="product-item"
           className={s.product__image}
         />
         <div className={s.product__info}>
