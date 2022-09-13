@@ -7,18 +7,15 @@ import Loader from "@components/Loader";
 import Pagination from "@components/Pagination";
 import Search from "@components/Search";
 import ProductsStore from "@store/ProductsStore";
-import { useQueryParamsStoreInit } from "@store/RootStore/hooks/useQueryParamsStoreInit";
 import log from "@utils/log";
 import Meta from "@utils/meta";
 import { useLocalStore } from "@utils/useLocalStore";
 import { observer } from "mobx-react-lite";
 import { useSearchParams } from "react-router-dom";
 
-import s from "./Products.module.scss";
+import s from "./ProductsPage.module.scss";
 
-const Products: React.FC = () => {
-  useQueryParamsStoreInit();
-
+const ProductsPage: React.FC = () => {
   const productsStore = useLocalStore(() => new ProductsStore());
   const [searchParams, setSearchParams] = useSearchParams({});
   const [page, setPage] = React.useState(searchParams.get("page") || "1");
@@ -43,14 +40,7 @@ const Products: React.FC = () => {
   }
 
   return (
-    <div className={s.products}>
-      <div className={s.products__head}>
-        <h1 className={s.head__title}>Products</h1>
-        <p className={s.head__info}>
-          We display products based on the latest products we have, if you want
-          to see our old products please enter the name of the item
-        </p>
-      </div>
+    <div className={s.products__content}>
       <div className={s.products__panel}>
         <Search
           value={title}
@@ -75,4 +65,4 @@ const Products: React.FC = () => {
   );
 };
 
-export default observer(Products);
+export default observer(ProductsPage);

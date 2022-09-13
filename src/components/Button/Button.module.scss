@@ -16,7 +16,7 @@
 
   &_color {
     &-primary {
-      background-color: $smaltblue;
+      background-color: $color-main;
 
       &:hover {
         opacity: 0.7;
@@ -25,7 +25,7 @@
 
     &-secondary {
       background-color: $color-screen;
-      color: $text-color;
+      color: $color-text;
       border: 2px solid $color-line;
 
       &:hover {
@@ -39,7 +39,7 @@
     align-items: center;
     justify-content: center;
     gap: 7px;
-    background-color: #d9d9d9;
+    background-color: $color-bg-disabled;
     cursor: default;
   }
 }

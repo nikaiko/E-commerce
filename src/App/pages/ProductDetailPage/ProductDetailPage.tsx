@@ -13,9 +13,9 @@ import { useLocalStore } from "@utils/useLocalStore";
 import { observer } from "mobx-react-lite";
 import { useParams } from "react-router-dom";
 
-import s from "./ProductDetail.module.scss";
+import s from "./ProductDetailPage.module.scss";
 
-const ProductDetail: React.FC = () => {
+const ProductDetailPage: React.FC = () => {
   const productDetailStore = useLocalStore(() => new ProductDetailStore());
   const { id } = useParams();
 
@@ -71,4 +71,4 @@ const ProductDetail: React.FC = () => {
   );
 };
 
-export default observer(ProductDetail);
+export default observer(ProductDetailPage);

@@ -42,7 +42,7 @@
   }
 
   &__category {
-    @include text(500, 18px, 180%, $paragraph-color);
+    @include text(500, 18px, 180%, $color-paragraph);
     padding-top: 10px;
 
     @media (max-width: 1240px) {

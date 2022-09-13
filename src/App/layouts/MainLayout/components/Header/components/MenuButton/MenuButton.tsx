@@ -1,12 +1,17 @@
 import React from "react";
 
+import routes from "@configs/routes";
 import cn from "classnames";
-import { NavLink } from "react-router-dom";
+import * as Router from "react-router-dom";
 
 import s from "./MenuButton.module.scss";
 
 const MenuButton: React.FC = () => {
   const [open, setOpen] = React.useState(false);
+
+  const styleLink = React.useCallback(({ isActive }: { isActive: boolean }) => {
+    return cn(s.menu__link, isActive && s.menu__link_active);
+  }, []);
 
   const handleClick = React.useCallback(() => {
     setOpen(!open);
@@ -15,7 +20,7 @@ const MenuButton: React.FC = () => {
   return (
     <div className={s.menu}>
       <div
-        className={open ? s.menu__button_open : s.menu__button}
+        className={cn(s.menu__button, open && s.menu__button_open)}
         onClick={handleClick}
       >
         <span className={cn(s.line, s.line__top)} />
@@ -24,54 +29,48 @@ const MenuButton: React.FC = () => {
       </div>
       {open && (
         <nav className={s.menu__popup}>
-          <NavLink
-            to="/profile"
-            className={({ isActive }) =>
-              isActive ? s.menu__link_active : s.menu__link
-            }
+          <Router.NavLink
+            to={routes.profile.mask}
+            className={styleLink}
+            onClick={handleClick}
           >
             Profile
-          </NavLink>
-          <NavLink
-            to="/basket"
-            className={({ isActive }) =>
-              isActive ? s.menu__link_active : s.menu__link
-            }
+          </Router.NavLink>
+          <Router.NavLink
+            to={routes.basket.mask}
+            className={styleLink}
+            onClick={handleClick}
           >
             Basket
-          </NavLink>
-          <NavLink
-            to="/products"
-            className={({ isActive }) =>
-              isActive ? s.menu__link_active : s.menu__link
-            }
+          </Router.NavLink>
+          <Router.NavLink
+            to={routes.products.mask}
+            className={styleLink}
+            onClick={handleClick}
           >
             Product
-          </NavLink>
-          <NavLink
-            to="/services"
-            className={({ isActive }) =>
-              isActive ? s.menu__link_active : s.menu__link
-            }
+          </Router.NavLink>
+          <Router.NavLink
+            to={routes.services.mask}
+            className={styleLink}
+            onClick={handleClick}
           >
             Services
-          </NavLink>
-          <NavLink
-            to="/article"
-            className={({ isActive }) =>
-              isActive ? s.menu__link_active : s.menu__link
-            }
+          </Router.NavLink>
+          <Router.NavLink
+            to={routes.article.mask}
+            className={styleLink}
+            onClick={handleClick}
           >
             Article
-          </NavLink>
-          <NavLink
-            to="/about"
-            className={({ isActive }) =>
-              isActive ? s.menu__link_active : s.menu__link
-            }
+          </Router.NavLink>
+          <Router.NavLink
+            to={routes.about.mask}
+            className={styleLink}
+            onClick={handleClick}
           >
             About Us
-          </NavLink>
+          </Router.NavLink>
         </nav>
       )}
     </div>
