@@ -4,7 +4,7 @@
   "rules": {
     "no-console": "error",
     "prettier/prettier": "error",
-    "import/no-cycle": ["error", { "maxDepth": "∞" }],
+    "import/no-cycle": "error",
     "import/order": [
       "error",
       {
