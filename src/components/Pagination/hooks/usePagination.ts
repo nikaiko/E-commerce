@@ -51,5 +51,6 @@ export const usePagination = (
     return [firstPageIdx, DOTS, ...midRange, DOTS, lastPageIdx];
     // }
   }, [totalCount, pageSize, siblingCount, currentPage]);
+
   return paginationRange;
 };

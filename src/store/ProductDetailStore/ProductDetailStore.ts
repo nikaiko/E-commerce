@@ -24,11 +24,11 @@ export default class ProductDetailStore {
       meta: computed,
       currentProduct: computed,
       relatedProducts: computed,
-      getProducts: action.bound,
+      getProducts: action,
     });
   }
 
-  async getProducts(id?: string) {
+  getProducts = async (id?: string) => {
     this._meta = Meta.loading;
     this._currentProduct = null;
 
@@ -38,7 +38,7 @@ export default class ProductDetailStore {
     );
 
     runInAction(() => {
-      if (respProduct.isError) {
+      if (respProduct.isError || respProductsFromCategory.isError) {
         this._meta = Meta.error;
         return;
       }
@@ -48,7 +48,7 @@ export default class ProductDetailStore {
         (product: ProductModel) => product.id !== respProduct.data.id
       );
     });
-  }
+  };
 
   get relatedProducts() {
     return this._relatedProducts;

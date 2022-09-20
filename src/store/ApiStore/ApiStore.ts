@@ -9,6 +9,11 @@ export default class ApiStore {
   ): Promise<ApiResponse<ProductModel[]>> {
     try {
       const response = await axios(apiUrls.products.all);
+
+      if (!response.data) {
+        throw new Error();
+      }
+
       return {
         isError: false,
         data: title
@@ -30,6 +35,11 @@ export default class ApiStore {
   ): Promise<ApiResponse<ProductModel>> {
     try {
       const response = await axios(apiUrls.products.single(id));
+
+      if (!response.data) {
+        throw new Error();
+      }
+
       return {
         isError: false,
         data: response.data,
@@ -47,6 +57,11 @@ export default class ApiStore {
   ): Promise<ApiResponse<ProductModel[]>> {
     try {
       const response = await axios(apiUrls.products.fromCategory(category));
+
+      if (!response.data) {
+        throw new Error();
+      }
+
       return {
         isError: false,
         data: response.data,

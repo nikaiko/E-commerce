@@ -20,7 +20,7 @@ const ProductDetailPage: React.FC = () => {
 
   React.useEffect(() => {
     productDetailStore.getProducts(id);
-  }, [id, productDetailStore]);
+  }, [id]);
 
   if (productDetailStore.meta === Meta.loading) {
     return <Loader />;

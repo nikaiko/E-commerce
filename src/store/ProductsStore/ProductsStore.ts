@@ -36,7 +36,7 @@ export default class ProductsStore {
       meta: computed,
       totalCount: computed,
       pageSize: computed,
-      getProducts: action.bound,
+      getProducts: action,
     });
 
     reaction(
@@ -48,13 +48,13 @@ export default class ProductsStore {
       },
       ({ title, page }) => {
         page
-          ? this.getProducts(title?.toString(), +page)
-          : this.getProducts(title?.toString());
+          ? this.getProducts(String(title), Number(page))
+          : this.getProducts(String(title));
       }
     );
   }
 
-  async getProducts(title?: string, page?: number) {
+  getProducts = async (title?: string, page?: number) => {
     this._meta = Meta.loading;
     this._products = [];
     this._totalCount = 0;
@@ -72,7 +72,7 @@ export default class ProductsStore {
       this._products = response.data;
       this._totalCount = response.data.length;
     });
-  }
+  };
 
   get products() {
     const firstPageIndex = (this._page - 1) * this._pageSize;

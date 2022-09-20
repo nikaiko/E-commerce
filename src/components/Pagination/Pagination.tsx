@@ -2,11 +2,12 @@ import React from "react";
 
 import cn from "classnames";
 
-import { usePagination, DOTS } from "./hooks/usePagination";
+import Pages from "./components/Pages";
+import { usePagination } from "./hooks/usePagination";
 import s from "./Pagination.module.scss";
 
 type PaginationProps = {
-  onPageChange: (page: number) => void;
+  onPage: (page: number) => void;
   totalCount: number;
   currentPage: number;
   pageSize: number;
@@ -15,13 +16,21 @@ type PaginationProps = {
 };
 
 const Pagination: React.FC<PaginationProps> = ({
-  onPageChange,
+  onPage,
   totalCount,
   currentPage,
   pageSize,
-  siblingCount = 1,
+  siblingCount,
   className = "",
 }) => {
+  const handleNext = React.useCallback(() => {
+    onPage(currentPage + 1);
+  }, [currentPage]);
+
+  const handlePrev = React.useCallback(() => {
+    onPage(currentPage - 1);
+  }, [currentPage]);
+
   const paginationRange = usePagination(
     totalCount,
     pageSize,
@@ -33,15 +42,7 @@ const Pagination: React.FC<PaginationProps> = ({
     return null;
   }
 
-  const onNext = () => {
-    onPageChange(currentPage + 1);
-  };
-
-  const onPrev = () => {
-    onPageChange(currentPage - 1);
-  };
-
-  let lastPage = paginationRange[paginationRange.length - 1];
+  const lastPage = paginationRange[paginationRange.length - 1];
 
   return (
     <ul className={cn(s.pagination, className)}>
@@ -50,36 +51,23 @@ const Pagination: React.FC<PaginationProps> = ({
           s.pagination__arrow,
           currentPage === 1 && s.pagination__arrow_disabled
         )}
-        onClick={onPrev}
+        onClick={handlePrev}
       >
         <div className={cn(s.arrow, s["arrow-left"])} />
       </li>
 
-      {paginationRange.map((pageNumber) => {
-        if (pageNumber === DOTS) {
-          return <li className={cn(s.pagination__item, s.dots)}>&#8230;</li>;
-        }
-
-        return (
-          <li
-            key={pageNumber}
-            className={cn(
-              s.pagination__item,
-              pageNumber === currentPage && s.pagination__item_selected
-            )}
-            onClick={() => onPageChange(+pageNumber)}
-          >
-            {pageNumber}
-          </li>
-        );
-      })}
+      <Pages
+        paginationRange={paginationRange}
+        currentPage={currentPage}
+        onPage={onPage}
+      />
 
       <li
         className={cn(
           s.pagination__arrow,
           currentPage === lastPage && s.pagination__arrow_disabled
         )}
-        onClick={onNext}
+        onClick={handleNext}
       >
         <div className={cn(s.arrow, s["arrow-right"])} />
       </li>

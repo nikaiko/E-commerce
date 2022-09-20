@@ -60,38 +60,4 @@
       cursor: pointer;
     }
   }
-
-  &__item {
-    min-width: 38px;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1.5px solid $color-placeholder;
-
-    @media (max-width: 1240px) {
-      min-width: 32px;
-    }
-
-    &.dots {
-      border: none;
-
-      &:hover {
-        background-color: transparent;
-        cursor: default;
-      }
-    }
-
-    &:hover {
-      border: 1.5px solid $color-main;
-      opacity: 0.7;
-      cursor: pointer;
-    }
-
-    &_selected {
-      background-color: $color-main;
-      border: none;
-      color: $color-screen;
-    }
-  }
 }

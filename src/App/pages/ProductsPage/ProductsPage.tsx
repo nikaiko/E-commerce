@@ -18,27 +18,41 @@ const ProductsPage: React.FC = () => {
   useQueryParamsStoreInit();
 
   const productsStore = useLocalStore(() => new ProductsStore());
-  const [searchParams, setSearchParams] = useSearchParams({});
+  const [searchParams, setSearchParams] = useSearchParams();
   const [page, setPage] = React.useState(searchParams.get("page") || "1");
   const [title, setTitle] = React.useState(searchParams.get("title") || "");
 
-  React.useEffect(() => {
-    productsStore.getProducts(title, +page);
-  }, [productsStore]);
+  const setSearch = React.useCallback(() => {
+    setSearchParams(title ? { title, page } : { page });
+  }, [page, title]);
 
   React.useEffect(() => {
-    setSearchParams(title ? { title, page } : { page });
+    productsStore.getProducts(title, Number(page));
+  }, []);
+
+  React.useEffect(() => {
+    setSearch();
   }, [page]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTitle(e.target.value);
-  };
+  const handleChange = React.useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setTitle(e.target.value);
+    },
+    []
+  );
 
-  const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setPage("1");
-    setSearchParams(title ? { title, page } : { page });
-  };
+  const handleSubmit = React.useCallback(
+    (e: React.ChangeEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      setPage("1");
+      setSearch();
+    },
+    [setSearch]
+  );
+
+  const handlePage = React.useCallback((pageNumber: number) => {
+    setPage(String(pageNumber));
+  }, []);
 
   return (
     <div className={s.products}>
@@ -65,8 +79,8 @@ const ProductsPage: React.FC = () => {
       <List list={productsStore.products} className={s.products__list} />
       <Pagination
         className={s.products__pagination}
-        currentPage={+page}
-        onPageChange={(number) => setPage(`${number}`)}
+        currentPage={Number(page)}
+        onPage={handlePage}
         pageSize={productsStore.pageSize}
         totalCount={productsStore.totalCount}
       />

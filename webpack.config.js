@@ -12,7 +12,7 @@ const isProd = process.env.NODE_ENV === "production";
 
 const getCssRules = (withModules = false) => {
   return [
-    MiniCssExtractPlugin.loader,
+    isProd ? MiniCssExtractPlugin.loader : "style-loader",
     !withModules
       ? "css-loader"
       : {

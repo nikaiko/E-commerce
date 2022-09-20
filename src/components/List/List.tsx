@@ -14,4 +14,4 @@ const List: React.FC<ListProps> = ({ list, className }) => {
   return <div className={className}>{cards}</div>;
 };
 
-export default List;
+export default React.memo(List);

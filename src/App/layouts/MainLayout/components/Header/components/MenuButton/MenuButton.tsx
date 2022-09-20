@@ -14,8 +14,8 @@ const MenuButton: React.FC = () => {
   }, []);
 
   const handleClick = React.useCallback(() => {
-    setOpen(!open);
-  }, [open]);
+    setOpen((prev) => !prev);
+  }, []);
 
   return (
     <div className={s.menu}>
