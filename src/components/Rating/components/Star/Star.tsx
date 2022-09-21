@@ -9,7 +9,7 @@ type StarProps = {
   className?: string;
 };
 
-const Star: React.FC<StarProps> = ({ mode = true, className }) => {
+const Star: React.FC<StarProps> = ({ mode = true, className = "" }) => {
   return (
     <div className={cn(s[`star_${mode ? "on" : "off"}`], className)}>
       &#9733;

@@ -7,10 +7,10 @@ import { usePagination } from "./hooks/usePagination";
 import s from "./Pagination.module.scss";
 
 type PaginationProps = {
-  onPage: (page: number) => void;
-  totalCount: number;
   currentPage: number;
   pageSize: number;
+  totalCount: number;
+  onPage: (page: number) => void;
   siblingCount?: number;
   className?: string;
 };
@@ -20,7 +20,7 @@ const Pagination: React.FC<PaginationProps> = ({
   totalCount,
   currentPage,
   pageSize,
-  siblingCount,
+  siblingCount = 1,
   className = "",
 }) => {
   const handleNext = React.useCallback(() => {

@@ -12,7 +12,11 @@ type RatingProps = {
   className?: string;
 };
 
-const Rating: React.FC<RatingProps> = ({ rate = 0, count, className }) => {
+const Rating: React.FC<RatingProps> = ({
+  rate = 0,
+  count = 0,
+  className = "",
+}) => {
   const stars = React.useMemo(
     () => range(1, 5).map((idx) => <Star key={idx} mode={idx <= rate} />),
     [rate]

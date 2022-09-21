@@ -78,11 +78,11 @@ const ProductsPage: React.FC = () => {
       </div>
       <List list={productsStore.products} className={s.products__list} />
       <Pagination
-        className={s.products__pagination}
         currentPage={Number(page)}
-        onPage={handlePage}
         pageSize={productsStore.pageSize}
         totalCount={productsStore.totalCount}
+        onPage={handlePage}
+        className={s.products__pagination}
       />
     </div>
   );
