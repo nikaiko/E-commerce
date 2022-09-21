@@ -19,7 +19,7 @@ const Button: React.FC<ButtonProps> = ({
   loading = false,
   color = ButtonColor.primary,
   className = "",
-  disabled,
+  disabled = false,
   children,
   ...rest
 }) => {

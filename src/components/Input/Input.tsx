@@ -1,5 +1,6 @@
 import React from "react";
 
+import noop from "@utils/noop";
 import cn from "classnames";
 
 import s from "./Input.module.scss";
@@ -14,11 +15,11 @@ export type InputProps = Omit<
 };
 
 const Input: React.FC<InputProps> = ({
-  value,
-  onChange,
+  value = "",
+  onChange = noop,
   loading = false,
-  disabled,
-  className,
+  disabled = false,
+  className = "",
   type = "text",
   ...rest
 }) => {

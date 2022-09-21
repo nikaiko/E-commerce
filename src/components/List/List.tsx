@@ -8,10 +8,16 @@ type ListProps = {
   className?: string;
 };
 
-const List: React.FC<ListProps> = ({ list, className }) => {
+const List: React.FC<ListProps> = ({ list, className = "" }) => {
   const cards = list.map((item) => <Card item={item} key={item.id} />);
 
-  return <div className={className}>{cards}</div>;
+  return (
+    <div className={className}>
+      {list.map((item) => (
+        <Card item={item} key={item.id} />
+      ))}
+    </div>
+  );
 };
 
 export default React.memo(List);

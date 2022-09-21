@@ -5,6 +5,7 @@ import Meta from "@utils/meta";
 import {
   action,
   computed,
+  // IReactionDisposer,
   makeObservable,
   observable,
   reaction,
@@ -48,8 +49,8 @@ export default class ProductsStore {
       },
       ({ title, page }) => {
         page
-          ? this.getProducts(String(title), Number(page))
-          : this.getProducts(String(title));
+          ? this.getProducts(title?.toString(), Number(page))
+          : this.getProducts(title?.toString());
       }
     );
   }
@@ -92,5 +93,21 @@ export default class ProductsStore {
     return this._pageSize;
   }
 
-  destroy(): void {}
+  destroy(): void {
+    // this._qpReaction();
+  }
+
+  // private readonly _qpReaction: IReactionDisposer = reaction(
+  //   () => {
+  //     const title = rootStore.query.getParam("title");
+  //     const page = rootStore.query.getParam("page");
+
+  //     return { title, page };
+  //   },
+  //   ({ title, page }) => {
+  //     page
+  //       ? this.getProducts(title?.toString(), Number(page))
+  //       : this.getProducts(title?.toString());
+  //   }
+  // );
 }
