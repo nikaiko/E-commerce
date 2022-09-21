@@ -1,6 +1,5 @@
 import React from "react";
 
-import log from "@utils/log";
 import useIsDesktop from "@utils/useIsDesktop";
 import ContentLoader from "react-content-loader";
 
