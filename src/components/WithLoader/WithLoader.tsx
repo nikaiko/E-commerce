@@ -10,8 +10,8 @@ export type WithLoaderProps = React.PropsWithChildren<{
 
 const WithLoader: React.FC<WithLoaderProps> = ({
   loading,
+  className = "",
   children,
-  className,
 }) => {
   return (
     <>

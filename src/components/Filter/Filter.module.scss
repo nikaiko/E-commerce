@@ -1,14 +1,20 @@
+@import "@styles/variables.scss";
+
 .filter {
-  box-shadow: 0px 4px 120px rgba(175, 173, 181, 0.15);
+  box-shadow: 0px 4px 120px $color-box-shadow;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 12px;
-  background-color: white;
+  background-color: $color-screen;
   height: 84px;
   width: 190px;
 
   @media (max-width: 1240px) {
     display: none;
+  }
+
+  &__title {
+    @include text(500, 18px, 180%);
   }
 }

@@ -1,13 +1,14 @@
 @import "@styles/variables.scss";
 
 .readmoreless {
-  @include text(500, 18px, 180%, $paragraph-color);
+  @include text(500, 18px, 180%, $color-paragraph);
 
   @media (max-width: 1240px) {
     font-size: 14px;
   }
+
   &__button {
-    @include text(500, 18px, 180%, $smaltblue);
+    @include text(500, 18px, 180%, $color-main);
     background-color: transparent;
     border: none;
     cursor: pointer;

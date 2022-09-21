@@ -1,8 +1,10 @@
 import React from "react";
 
 import Counter from "@components/Counter";
+import range from "@utils/range";
 
-import styles from "./Rating.module.scss";
+import Star from "./components/Star";
+import s from "./Rating.module.scss";
 
 type RatingProps = {
   rate?: number;
@@ -10,32 +12,27 @@ type RatingProps = {
   className?: string;
 };
 
-const Rating: React.FC<RatingProps> = ({ rate, count, className }) => {
+const Rating: React.FC<RatingProps> = ({
+  rate = 0,
+  count = 0,
+  className = "",
+}) => {
+  const stars = React.useMemo(
+    () => range(1, 5).map((idx) => <Star key={idx} mode={idx <= rate} />),
+    [rate]
+  );
+
   return (
     <div className={className}>
       {count ? (
-        <div className={styles.rating}>
-          {[...Array(5)].map((__, id) => {
-            id += 1;
-            return (
-              <div
-                key={id}
-                className={
-                  id <= (rate || 0)
-                    ? styles.rating__star_on
-                    : styles.rating__star_off
-                }
-              >
-                &#9733;
-              </div>
-            );
-          })}
+        <div className={s.rating}>
+          {stars}
           <h5>{rate}</h5>
           <Counter count={count} />
         </div>
       ) : (
-        <div className={styles.rating}>
-          <div className={styles.rating__star_on}>&#9733;</div>
+        <div className={s.rating}>
+          <Star />
           <h3>{rate}</h3>
         </div>
       )}

@@ -1,35 +1,37 @@
 import React from "react";
 
-import classNames from "classnames";
+import noop from "@utils/noop";
+import cn from "classnames";
 
-import styles from "./Input.module.scss";
+import s from "./Input.module.scss";
 
 export type InputProps = Omit<
   React.InputHTMLAttributes<HTMLInputElement>,
   "onChange"
 > & {
-  value: string;
-  onChange: (value: string) => void;
+  value?: string;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  loading?: boolean;
 };
 
 const Input: React.FC<InputProps> = ({
-  value,
-  onChange,
-  className = "",
+  value = "",
+  onChange = noop,
+  loading = false,
   disabled = false,
+  className = "",
+  type = "text",
   ...rest
 }) => {
+  const isBlocked = loading || disabled;
+
   return (
     <input
-      type="text"
+      type={type}
       value={value}
-      onChange={(e) => onChange(e.target.value)}
-      className={classNames(
-        styles.input,
-        disabled && styles.input_disabled,
-        className
-      )}
-      disabled={disabled}
+      onChange={onChange}
+      className={cn(s.input, disabled && s.input_disabled, className)}
+      disabled={isBlocked}
       {...rest}
     />
   );

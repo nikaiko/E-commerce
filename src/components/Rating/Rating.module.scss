@@ -1,14 +1,4 @@
 .rating {
   display: flex;
   align-items: center;
-
-  &__star {
-    &_on {
-      color: #ffb800;
-    }
-
-    &_off {
-      color: #ccc;
-    }
-  }
 }

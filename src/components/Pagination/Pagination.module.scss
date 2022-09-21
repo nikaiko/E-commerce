@@ -1,0 +1,63 @@
+@import "@styles/variables.scss";
+
+.pagination {
+  display: flex;
+  @include text(500, 18px, 180%);
+  min-height: 42px;
+
+  @media (max-width: 1240px) {
+    font-size: 14px;
+    min-height: 32px;
+  }
+
+  &__arrow {
+    min-width: 38px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @media (max-width: 1240px) {
+      min-width: 32px;
+    }
+
+    .arrow {
+      &::before {
+        position: relative;
+        content: "";
+        display: inline-block;
+        width: 0.8em;
+        height: 0.8em;
+        border-right: 0.12em solid $color-text;
+        border-top: 0.12em solid $color-text;
+      }
+
+      &-left {
+        transform: rotate(-135deg);
+      }
+
+      &-right {
+        transform: rotate(45deg);
+      }
+    }
+
+    &_disabled {
+      pointer-events: none;
+
+      .arrow::before {
+        border-right: 0.12em solid $color-paragraph;
+        border-top: 0.12em solid $color-paragraph;
+      }
+
+      &:hover {
+        background-color: transparent;
+        cursor: default;
+      }
+    }
+
+    &:hover {
+      opacity: 0.7;
+      cursor: pointer;
+    }
+  }
+}

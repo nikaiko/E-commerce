@@ -1,13 +1,16 @@
 import React from "react";
 
-import styles from "./Counter.module.scss";
+import cn from "classnames";
+
+import s from "./Counter.module.scss";
 
 type CounterProps = {
   count: number;
+  className?: string;
 };
 
-const Counter: React.FC<CounterProps> = ({ count }) => {
-  return <span className={styles.counter}>{count}</span>;
+const Counter: React.FC<CounterProps> = ({ count, className }) => {
+  return <span className={cn(s.counter, className)}>{count}</span>;
 };
 
-export default Counter;
+export default React.memo(Counter);

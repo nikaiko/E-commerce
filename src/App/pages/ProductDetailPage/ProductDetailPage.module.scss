@@ -1,0 +1,113 @@
+@import "@styles/variables.scss";
+
+.product {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  gap: 50px;
+
+  @media (max-width: 1240px) {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  &__image {
+    margin: auto;
+    max-width: 600px;
+    max-height: 600px;
+
+    @media (max-width: 1240px) {
+      max-width: 100%;
+      max-height: 326px;
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    max-width: 100%;
+    padding-top: 2px;
+  }
+
+  &__title {
+    @include text(700, 44px, 130%);
+
+    @media (max-width: 1240px) {
+      font-size: 24px;
+    }
+  }
+
+  &__category {
+    @include text(500, 18px, 180%, $color-paragraph);
+    padding-top: 10px;
+
+    @media (max-width: 1240px) {
+      font-size: 14px;
+      padding-top: 4px;
+    }
+  }
+
+  &__rating {
+    @include text(700, 44px, 130%);
+    padding-top: 30px;
+
+    @media (max-width: 1240px) {
+      font-size: 24px;
+      padding-top: 20px;
+    }
+  }
+
+  &__description {
+    padding-top: 20px;
+  }
+
+  &__price {
+    @include text(700, 44px, 130%);
+    padding-top: 30px;
+
+    @media (max-width: 1240px) {
+      padding-top: 16px;
+      font-size: 24px;
+    }
+  }
+
+  &__buttons {
+    padding-top: 50px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+
+    @media (max-width: 1240px) {
+      padding-top: 30px;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    Button {
+      width: 100%;
+      height: 58px;
+      font-size: 18px;
+    }
+  }
+}
+
+.relatedItems {
+  @include text(700, 32px, 130%);
+  padding-top: 50px;
+
+  @media (max-width: 1240px) {
+    padding-top: 100px;
+  }
+
+  &__list {
+    padding-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 26px 28px;
+
+    @media (max-width: 1240px) {
+      gap: 26px 14px;
+    }
+  }
+}

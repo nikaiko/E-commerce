@@ -7,6 +7,7 @@
   justify-content: space-between;
   width: 394px;
   gap: 26px;
+  cursor: pointer;
 
   @media (max-width: 1240px) {
     max-width: 156px;
@@ -14,17 +15,16 @@
 
   &__image {
     margin: auto;
-    max-width: 394px;
+    max-width: 100%;
     max-height: 360px;
-    cursor: pointer;
 
     @media (max-width: 1240px) {
-      max-width: 156px;
       max-height: 130px;
     }
   }
 
   &__description {
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -32,7 +32,7 @@
   }
 
   &__category {
-    @include text(700, 18px, 130%, $paragraph-color);
+    @include text(700, 18px, 130%, $color-paragraph);
 
     @media (max-width: 1240px) {
       font-size: 12px;
@@ -42,8 +42,11 @@
 
   &__title {
     @include text(700, 26px, 130%);
+    max-width: 100%;
     letter-spacing: 0.01em;
-    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
     @media (max-width: 1240px) {
       font-size: 14px;
@@ -51,7 +54,7 @@
   }
 
   &__subtitle {
-    @include text(500, 18px, 180%, $paragraph-color);
+    @include text(500, 18px, 180%, $color-paragraph);
 
     @media (max-width: 1240px) {
       font-size: 12px;
