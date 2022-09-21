@@ -16,7 +16,7 @@ const Card: React.FC<CardProps> = ({ item }) => {
 
   const handleClick = React.useCallback(() => {
     navigate(routes.products.detail.createRoot(item?.id));
-  }, []);
+  }, [item?.id, navigate]);
 
   return (
     <div className={s.card} onClick={handleClick}>

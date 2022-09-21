@@ -5,7 +5,7 @@ import Meta from "@utils/meta";
 import {
   action,
   computed,
-  // IReactionDisposer,
+  IReactionDisposer,
   makeObservable,
   observable,
   reaction,
@@ -40,19 +40,19 @@ export default class ProductsStore {
       getProducts: action,
     });
 
-    reaction(
-      () => {
-        const title = rootStore.query.getParam("title");
-        const page = rootStore.query.getParam("page");
+    // reaction(
+    //   () => {
+    //     const title = rootStore.query.getParam("title");
+    //     const page = rootStore.query.getParam("page");
 
-        return { title, page };
-      },
-      ({ title, page }) => {
-        page
-          ? this.getProducts(title?.toString(), Number(page))
-          : this.getProducts(title?.toString());
-      }
-    );
+    //     return { title, page };
+    //   },
+    //   ({ title, page }) => {
+    //     page
+    //       ? this.getProducts(title?.toString(), Number(page))
+    //       : this.getProducts(title?.toString());
+    //   }
+    // );
   }
 
   getProducts = async (title?: string, page?: number) => {
@@ -94,20 +94,20 @@ export default class ProductsStore {
   }
 
   destroy(): void {
-    // this._qpReaction();
+    this._qpReaction();
   }
 
-  // private readonly _qpReaction: IReactionDisposer = reaction(
-  //   () => {
-  //     const title = rootStore.query.getParam("title");
-  //     const page = rootStore.query.getParam("page");
+  readonly _qpReaction: IReactionDisposer = reaction(
+    () => {
+      const title = rootStore.query.getParam("title");
+      const page = rootStore.query.getParam("page");
 
-  //     return { title, page };
-  //   },
-  //   ({ title, page }) => {
-  //     page
-  //       ? this.getProducts(title?.toString(), Number(page))
-  //       : this.getProducts(title?.toString());
-  //   }
-  // );
+      return { title, page };
+    },
+    ({ title, page }) => {
+      page
+        ? this.getProducts(title?.toString(), Number(page))
+        : this.getProducts(title?.toString());
+    }
+  );
 }

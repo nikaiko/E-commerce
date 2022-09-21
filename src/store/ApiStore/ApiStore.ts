@@ -10,17 +10,19 @@ export default class ApiStore {
     try {
       const response = await axios(apiUrls.products.all);
 
-      if (!response.data) {
+      const data = title
+        ? response.data.filter((item: ProductModel) =>
+            item.title.toLowerCase().includes(title.toLowerCase())
+          )
+        : response.data;
+
+      if (data.length === 0) {
         throw new Error();
       }
 
       return {
         isError: false,
-        data: title
-          ? response.data.filter((item: ProductModel) =>
-              item.title.toLowerCase().includes(title.toLowerCase())
-            )
-          : response.data,
+        data,
       };
     } catch (e) {
       return {

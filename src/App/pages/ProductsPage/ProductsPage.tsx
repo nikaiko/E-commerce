@@ -3,6 +3,7 @@ import React from "react";
 import Counter from "@components/Counter";
 import Filter from "@components/Filter";
 import List from "@components/List";
+import NotFound from "@components/NotFound";
 import Pagination from "@components/Pagination";
 import Search from "@components/Search";
 import ProductsStore from "@store/ProductsStore";
@@ -76,7 +77,15 @@ const ProductsPage: React.FC = () => {
         <h2 className={s.total__title}>Total Products</h2>
         <Counter count={productsStore.totalCount} />
       </div>
-      <List list={productsStore.products} className={s.products__list} />
+      {productsStore.meta === Meta.error ? (
+        <NotFound />
+      ) : (
+        <List
+          list={productsStore.products}
+          className={s.products__list}
+          loading={productsStore.meta === Meta.loading}
+        />
+      )}
       <Pagination
         currentPage={Number(page)}
         pageSize={productsStore.pageSize}

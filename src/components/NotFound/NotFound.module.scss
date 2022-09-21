@@ -1,0 +1,11 @@
+@import "@styles/variables.scss";
+
+.notfound {
+  @include text(700, 44px, 130%);
+  display: flex;
+  justify-content: center;
+
+  @media (max-width: 1240px) {
+    font-size: 18px;
+  }
+}

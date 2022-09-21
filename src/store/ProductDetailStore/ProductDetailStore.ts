@@ -34,7 +34,7 @@ export default class ProductDetailStore {
 
     const respProduct = await ApiStore.fetchSingleProduct(id);
     const respProductsFromCategory = await ApiStore.fetchProductsFromCategory(
-      respProduct.data.category
+      respProduct.data?.category
     );
 
     runInAction(() => {
@@ -42,6 +42,7 @@ export default class ProductDetailStore {
         this._meta = Meta.error;
         return;
       }
+
       this._meta = Meta.success;
       this._currentProduct = respProduct.data;
       this._relatedProducts = respProductsFromCategory.data.filter(
