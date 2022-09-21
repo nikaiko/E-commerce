@@ -35,6 +35,7 @@ const ProductDetailPage: React.FC = () => {
         <List
           list={productDetailStore.relatedProducts}
           className={s.relatedItems__list}
+          loading={productDetailStore.meta === Meta.loading}
         />
       </div>
     </div>
